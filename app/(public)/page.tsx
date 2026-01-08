@@ -42,14 +42,14 @@ export default function Home() {
 				</p>
 
 				<div className={styles.heroSectionButtons}>
-					<Link href="/register">
+					<Link href="/auth/register">
 						<Button variant="register">
 							Começar agora
 							<MoveRight />
 						</Button>
 					</Link>
 
-					<Link href="/login">
+					<Link href="/auth/login">
 						<Button variant="default">Já tenho conta</Button>
 					</Link>
 				</div>
@@ -92,7 +92,7 @@ export default function Home() {
 						Crie sua conta gratuita e tenha controle total do seu
 						dinheiro
 					</p>
-					<Link href="/register">
+					<Link href="/auth/register">
 						<Button variant="register">
 							Criar conta gratuita
 							<MoveRight />

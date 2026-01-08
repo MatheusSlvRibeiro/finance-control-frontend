@@ -1,0 +1,131 @@
+@use "../../../styles/variables.scss" as *;
+
+.login__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	overflow: hidden;
+
+	@media (min-width: $breakpoint-lg) {
+		flex-direction: row;
+		width: 100%;
+	}
+}
+
+.form__section {
+	background-color: $background;
+	padding: $space-2xl;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 3rem;
+	min-height: 100vh;
+	align-items: center;
+	margin: 0 auto;
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 50%;
+		padding: 0;
+	}
+}
+
+.login__logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login__header {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.header__title {
+	color: $dark;
+}
+
+.header__subtitle {
+	color: $gray-muted;
+}
+
+.login__btn_register {
+	text-align: center;
+	font-weight: $font-medium;
+	color: $gray-muted;
+
+	span {
+		color: $green;
+		cursor: pointer;
+	}
+}
+
+.decorative__section {
+	@media (max-width: $breakpoint-md) {
+		display: none;
+	}
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	max-width: 50%;
+	padding: $space-3xl;
+	gap: 2rem;
+	background: linear-gradient(to left, $primary, darken($accent, 5%));
+
+	.decorative__content {
+		padding: 0 $space-2xl;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.decorative__title {
+		font-size: $font-3xl;
+
+		span {
+			font-weight: $font-regular;
+		}
+	}
+
+	.decorative__subtitle {
+		font-size: $font-lg;
+		font-weight: $font-regular;
+	}
+
+	.decorative__title,
+	.decorative__subtitle,
+	.card__title,
+	.card__value {
+		color: $white;
+	}
+
+	.decorative__card_grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+
+	.decorative__card {
+		padding: $space-lg;
+		background: rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		width: 100%;
+		border-radius: $radius-md;
+		text-align: start;
+	}
+
+	.card__title {
+		font-size: $font-2xl;
+		font-weight: $font-bold;
+	}
+
+	.card__value {
+		font-size: $font-sm;
+	}
+}

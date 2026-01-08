@@ -9,7 +9,7 @@ export function Header() {
 			<div className={styles.headerContent}>
 				<Logo />
 
-				<Link href="/login">
+				<Link href="/auth/login">
 					<Button variant="login">Entrar</Button>
 				</Link>
 			</div>
