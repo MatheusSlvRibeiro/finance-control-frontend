@@ -64,7 +64,8 @@
 
 .decorative__section {
 	display: none;
-	@media (min-width: breakpoint-lg) {
+
+	@media (min-width: $breakpoint-lg) {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

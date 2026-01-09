@@ -50,6 +50,11 @@
 			margin: $space-xxs;
 			border-radius: $radius-lg;
 			font-weight: $font-medium;
+
+			@media (min-width: $breakpoint-lg) {
+				font-size: $font-xs;
+				padding: $space-xxs;
+			}
 		}
 
 		.password__muted {

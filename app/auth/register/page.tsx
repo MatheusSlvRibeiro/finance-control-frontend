@@ -4,8 +4,15 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 import { Logo } from "@components/layout/logo/logo";
 import RegisterForm from "./_components/registerForm/registerForm";
+import { Check } from "lucide-react";
 
 export default function Register() {
+	const benefits = [
+		{ text: "Dashboard completo com gráficos" },
+		{ text: "Gestão de múltiplas contas" },
+		{ text: "Categorização inteligente" },
+		{ text: "Relatórios detalhados" },
+	];
 
 	return (
 		<div className={styles.register__container}>
@@ -31,6 +38,32 @@ export default function Register() {
 						<span>Entrar</span>
 					</Link>
 				</p>
+			</section>
+			<section className={styles.decorative__section}>
+				<div className={styles.decorative__content}>
+					<h2 className={styles.decorative__title}>
+						Comece sua jornada financeira
+					</h2>
+
+					<p className={styles.decorative__subtitle}>
+						Crie sua conta gratuita e tenha acesso a todas as
+						ferramentas para organizar sus finanças pessoais.
+					</p>
+
+					<div className={styles.decorative__benefits}>
+						{benefits.map((item) => (
+							<div
+								className={styles.decorative__benefits_items}
+								key={item.text}
+							>
+								<Check className={styles.benefits__check} />
+								<p className={styles.benefits__text}>
+									{item.text}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
 			</section>
 		</div>
 	);
