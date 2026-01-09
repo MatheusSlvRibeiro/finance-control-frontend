@@ -27,7 +27,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.login__container}>
-			<section className={styles.form__section}>
+			<section className={styles.login__section}>
 				<div className={styles.login__logo}>
 					<Logo />
 				</div>

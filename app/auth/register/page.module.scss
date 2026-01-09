@@ -1,0 +1,63 @@
+@use "../../../styles/variables.scss" as *;
+
+.register__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	overflow: hidden;
+
+	@media (min-width: $breakpoint-lg) {
+		flex-direction: row;
+		width: 100%;
+	}
+}
+
+.register__section {
+	background-color: $background;
+	padding: $space-2xl;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 3rem;
+	min-height: 100vh;
+	align-items: center;
+	margin: 0 auto;
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 50%;
+		padding: 0;
+	}
+}
+
+.register__logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.register__header {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.register__header_title {
+	color: $dark;
+}
+
+.register__header_subtitle {
+	color: $gray-muted;
+}
+
+.register__btn {
+	text-align: center;
+	font-weight: $font-medium;
+	color: $gray-muted;
+
+	span {
+		color: $green;
+		cursor: pointer;
+	}
+}

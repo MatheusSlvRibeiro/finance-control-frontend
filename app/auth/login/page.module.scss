@@ -13,7 +13,7 @@
 	}
 }
 
-.form__section {
+.login__section {
 	background-color: $background;
 	padding: $space-2xl;
 	display: flex;
@@ -63,69 +63,68 @@
 }
 
 .decorative__section {
-	@media (max-width: $breakpoint-md) {
-		display: none;
-	}
-
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	max-width: 50%;
-	padding: $space-3xl;
-	gap: 2rem;
-	background: linear-gradient(to left, $primary, darken($accent, 5%));
-
-	.decorative__content {
-		padding: 0 $space-2xl;
+	display: none;
+	@media (min-width: breakpoint-lg) {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		max-width: 50%;
+		padding: $space-3xl;
 		gap: 2rem;
-	}
+		background: linear-gradient(to left, $primary, darken($accent, 5%));
 
-	.decorative__title {
-		font-size: $font-3xl;
+		.decorative__content {
+			padding: 0 $space-2xl;
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+		}
 
-		span {
+		.decorative__title {
+			font-size: $font-3xl;
+
+			span {
+				font-weight: $font-regular;
+			}
+		}
+
+		.decorative__subtitle {
+			font-size: $font-lg;
 			font-weight: $font-regular;
 		}
-	}
 
-	.decorative__subtitle {
-		font-size: $font-lg;
-		font-weight: $font-regular;
-	}
+		.decorative__title,
+		.decorative__subtitle,
+		.card__title,
+		.card__value {
+			color: $white;
+		}
 
-	.decorative__title,
-	.decorative__subtitle,
-	.card__title,
-	.card__value {
-		color: $white;
-	}
+		.decorative__card_grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+		}
 
-	.decorative__card_grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-	}
+		.decorative__card {
+			padding: $space-lg;
+			background: rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			width: 100%;
+			border-radius: $radius-md;
+			text-align: start;
+		}
 
-	.decorative__card {
-		padding: $space-lg;
-		background: rgba(255, 255, 255, 0.2);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		width: 100%;
-		border-radius: $radius-md;
-		text-align: start;
-	}
+		.card__title {
+			font-size: $font-2xl;
+			font-weight: $font-bold;
+		}
 
-	.card__title {
-		font-size: $font-2xl;
-		font-weight: $font-bold;
-	}
-
-	.card__value {
-		font-size: $font-sm;
+		.card__value {
+			font-size: $font-sm;
+		}
 	}
 }

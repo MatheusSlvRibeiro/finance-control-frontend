@@ -46,3 +46,11 @@
 		transform: scale(1.02);
 	}
 }
+
+.disabled{
+	@extend %button-base;
+	color: $white;
+	background-color: $gray-muted;
+	color: $white;
+	padding: $space-md $space-2xl;
+}
