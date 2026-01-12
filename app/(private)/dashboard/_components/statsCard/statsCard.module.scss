@@ -1,0 +1,47 @@
+@use "../../../../../styles/variables.scss" as *;
+
+%icon-base {
+	display: flex;
+	color: white;
+	padding: $space-xxs;
+	border-radius: 50%;
+}
+
+.stats_card__container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	background-color: $white;
+	padding: $space-md;
+	border-radius: $radius-lg;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+	.stats_card__content {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.stats_card__type {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	.icon_accounts{
+		@extend %icon-base;
+		background-color: $accounts;
+	}
+
+	.icon_incomes {
+		@extend %icon-base;
+		background-color: $income;
+	}
+
+	.icon_expenses {
+		@extend %icon-base;
+		background-color: $expense;
+	}
+}
