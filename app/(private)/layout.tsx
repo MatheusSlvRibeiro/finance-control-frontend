@@ -35,11 +35,18 @@ export default function PrivateLayout({
 				sidebarOpen={sidebarOpen}
 			/>
 			<AppSidebar open={sidebarOpen} onClose={handleSidebarClose} />
-			<main style={isMobile 
-				? {} 
-				: {
-					marginLeft: 200,
-				}}>{children}</main>
+			<main
+				style={
+					isMobile
+						? {}
+						: {
+								marginLeft: 230,
+								maxWidth: 1800,
+						  }
+				}
+			>
+				{children}
+			</main>
 		</>
 	);
 }
