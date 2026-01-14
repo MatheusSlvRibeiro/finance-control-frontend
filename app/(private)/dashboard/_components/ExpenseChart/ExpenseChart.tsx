@@ -8,6 +8,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import styles from "./ExpenseChart.module.scss";
 
 export function ExpenseChart() {
 	const evolutionData = [
@@ -23,17 +24,28 @@ export function ExpenseChart() {
 	const charHeight = isMobile ? 200 : 300;
 
 	return (
-		<div style={{ width: "100%", height: charHeight }}>
-			<ResponsiveContainer width="100%" height="100%">
-				<LineChart data={evolutionData}>
-					<CartesianGrid />
-					<XAxis dataKey="month" />
-					<YAxis />
-					<Tooltip />
-					<Line dataKey="receitas" name="Receitas" stroke="#16a149" />
-					<Line dataKey="despesas" name="Despesas" stroke="#dc2828" />
-				</LineChart>
-			</ResponsiveContainer>
+		<div className={styles.dashboard__lineChart}>
+			<h3 className={styles.lineChart_title}>Evolução Financeira</h3>
+			<div style={{ width: "100%", height: charHeight }}>
+				<ResponsiveContainer width="100%" height="100%">
+					<LineChart data={evolutionData}>
+						<CartesianGrid />
+						<XAxis dataKey="month" />
+						<YAxis />
+						<Tooltip />
+						<Line
+							dataKey="receitas"
+							name="Receitas"
+							stroke="#16a149"
+						/>
+						<Line
+							dataKey="despesas"
+							name="Despesas"
+							stroke="#dc2828"
+						/>
+					</LineChart>
+				</ResponsiveContainer>
+			</div>
 		</div>
 	);
 }
