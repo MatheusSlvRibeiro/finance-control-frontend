@@ -1,0 +1,131 @@
+%title-base {
+	color: $dark;
+	text-align: center;
+	font-weight: $font-bold;
+	line-height: 1.25;
+}
+
+%paragraph-base {
+	color: $gray-muted;
+	text-align: center;
+	line-height: 1.5;
+	margin-bottom: $space-xl;
+}
+
+.heroSection {
+	padding: 5rem 0;
+	margin: $space-xl;
+}
+
+.benefitsTitle,
+.carouselTitle,
+.finalCtaTitle {
+	@extend %title-base;
+	font-size: $font-3xl;
+}
+
+.title {
+	@extend %title-base;
+	font-size: $font-4xl;
+	margin: $space-xl;
+	padding-top: $space-xl;
+
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-5xl;
+	}
+	@media (min-width: $breakpoint-xl) {
+		font-size: $font-6xl;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	span {
+		background: linear-gradient(to right, $primary, $accent);
+		background-clip: text;
+		color: transparent;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+
+.paragraph,
+.benefitsSubtitle,
+.carouselSubtitle,
+.finalCtaSubtitle {
+	@extend %paragraph-base;
+	font-size: $font-xl;
+	font-weight: $font-regular;
+}
+
+.paragraph {
+	@media (min-width: $breakpoint-xl) {
+		max-width: 800px;
+		margin: 1.5rem auto;
+	}
+}
+
+.heroSectionButtons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: $space-lg;
+
+	@media (min-width: $breakpoint-md) {
+		flex-direction: row;
+		justify-content: center;
+	}
+}
+
+.benefitsSection {
+	align-items: center;
+	justify-content: center;
+	margin: 6rem $space-xl;
+}
+
+.benefitsContent {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.benefitsSubtitle,
+.carouselSubtitle,
+.finalCtaSubtitle {
+	color: $gray-muted;
+}
+
+.carouselSection,
+.finalCtaContent {
+	text-align: center;
+	margin: 0 auto;
+	padding: $space-2xl;
+}
+
+.carouselContent {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin: 2rem 1rem;
+}
+
+.finalCtaSection {
+	padding: 2rem 0;
+	background-color: lighten($green, 50%);
+}
+
+.finalCtaContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.finalCtaTitle {
+	margin: 0 auto;
+	width: 250px;
+
+	@media (min-width: $breakpoint-md) {
+		width: 100%;
+	}
+}

@@ -1,0 +1,112 @@
+%icon-base {
+	display: flex;
+	color: white;
+	padding: $space-xxs;
+	border-radius: 50%;
+}
+
+%card-base {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.8rem;
+	flex: 1;
+}
+
+%content-base {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	gap: 0.8rem;
+	 
+	@media (min-width: $breakpoint-sm) {
+		padding: $space-lg;
+		border-radius: $radius-lg;
+	}
+}
+
+.stats_card__container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	background-color: $white;
+	padding: $space-md;
+	border-radius: $radius-lg;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+	@media (min-width: $breakpoint-sm) {
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.content_account,
+	.content_incomes,
+	.content_expenses,
+	.content_transfers {
+		@extend %content-base;
+	}
+
+	@media (min-width: $breakpoint-sm) {
+		.content_account {
+			background-color: lighten($accounts, 30%);
+		}
+		.content_incomes {
+			background-color: lighten($income, 30%);
+		}
+		.content_expenses {
+			background-color: lighten($expense, 30%);
+		}
+		.content_transfers {
+			background-color: lighten($transfers, 30%);
+		}
+	}
+
+	.stats_card__type {
+		@extend %card-base;
+
+		@media (min-width: $breakpoint-sm) {
+			flex-direction: column;
+			gap: 0.2rem;
+			align-items: start;
+		}
+	}
+
+	.stats_card_label {
+		flex: 1;
+		text-align: left;
+	}
+
+	.stats_card_amount {
+		flex: 1;
+		text-align: right;
+	}
+
+	.icon_accounts,
+	.icon_incomes,
+	.icon_expenses,
+	.icon_transfers {
+		@extend %icon-base;
+	}
+
+	.icon_accounts {
+		background-color: $accounts;
+	}
+	.icon_incomes {
+		background-color: $income;
+	}
+	.icon_expenses {
+		background-color: $expense;
+	}
+	.icon_transfers {
+		background-color: $transfers;
+	}
+}

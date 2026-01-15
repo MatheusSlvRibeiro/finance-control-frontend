@@ -1,0 +1,95 @@
+.dashboard__pieChart {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	background-color: $white;
+	padding: $space-md;
+	border-radius: $radius-lg;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+	width: 100%;
+	align-items: center;
+	text-align: center;
+
+	.pieChart_title {
+		color: $dark;
+		font-weight: $font-medium;
+		width: 100%;
+		text-align: center;
+		margin-bottom: $space-md;
+	}
+
+	.dashboard__pieChart_content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+		width: 100%;
+	}
+
+	@media (min-width: $breakpoint-sm) {
+		align-items: flex-start;
+		text-align: left;
+
+		.pieChart_title {
+			text-align: left;
+			margin-bottom: 0;
+		}
+
+		.dashboard__pieChart_content {
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 2rem;
+		}
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+		max-width: 300px;
+
+		.dashboard__pieChart_content {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.5rem;
+		}
+	}
+}
+
+.piechart {
+	width: 100%;
+	height: 300px;
+	min-width: 200px;
+	min-height: 200px;
+}
+
+.piechart__infoList {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+	max-width: 300px;
+
+	.piechart__category {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.5rem;
+
+		.piechart__dotlist {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+		}
+
+		.piechart__info_type {
+			color: $dark;
+		}
+	}
+
+	.piechart__info_value {
+		color: $secondary-foreground;
+	}
+}

@@ -15,20 +15,20 @@ Esta versão não possui autenticação real nem persistência de dados. Todas a
 
 ## 🧠 Objetivo do projeto
 
-- Demonstrar domínio de Next.js moderno (App Router)
-- Aplicar boas práticas de arquitetura frontend
-- Criar uma interface realista de dashboard financeiro
-- Servir como base visual para futura integração com backend
+-   Demonstrar domínio de Next.js moderno (App Router)
+-   Aplicar boas práticas de arquitetura frontend
+-   Criar uma interface realista de dashboard financeiro
+-   Servir como base visual para futura integração com backend
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
-- Next.js (App Router)
-- React
-- TypeScript
-- SCSS
-- Gráficos: Recharts
+-   Next.js (App Router)
+-   React
+-   TypeScript
+-   SCSS
+-   Gráficos: Recharts
 
 ---
 
@@ -61,33 +61,35 @@ src/
 
 ## 🎨 Estilos
 
-- Utiliza SCSS Modules para estilos encapsulados por componente
-- Variáveis globais centralizadas para:
-  - Espaçamento
-  - Tipografia
-  - Font weight
-  - Border radius
+-   Utiliza SCSS Modules para estilos encapsulados por componente
+-   Variáveis globais centralizadas para:
 
-- Separação clara entre:
-  - Estrutura (TSX)
-  - Estilo (SCSS)
+    -   Espaçamento
+    -   Tipografia
+    -   Font weight
+    -   Border radius
+
+-   Separação clara entre:
+    -   Estrutura (TSX)
+    -   Estilo (SCSS)
 
 ## 📊 Funcionalidades da interface
 
-- Landing page de apresentação
-- Login e cadastro (interface)
-- Dashboard com:
-  - Cards de resumo (saldo, receitas, despesas)
-  - Gráfico de evolução de despesas
-  - Gráfico de despesas por categoria
+-   Landing page de apresentação
+-   Login e cadastro (interface)
+-   Dashboard com:
 
-- Gerenciamento de:
-  - Contas
-  - Transações
-  - Categorias
-- Sidebar com navegação
-- Layout responsivo
-- Estados de loading e empty state
+    -   Cards de resumo (saldo, receitas, despesas)
+    -   Gráfico de evolução de despesas
+    -   Gráfico de despesas por categoria
+
+-   Gerenciamento de:
+    -   Contas
+    -   Transações
+    -   Categorias
+-   Sidebar com navegação
+-   Layout responsivo
+-   Estados de loading e empty state
 
 ---
 
@@ -97,25 +99,28 @@ Este repositório não possui integração com backend real.
 
 ### ➡️ O projeto completo (frontend + backend em Django REST) está disponível em: ()
 
-### � Como rodar o projeto localmente
+### Como rodar o projeto localmente
 
 1. **Clone o repositório**
+
 ```bash
 git clone https://github.com/seu-usuario/seu-repo-frontend-demo
 ```
 
 2. **Entre na pasta**
+
 ```bash
 cd finance-control
 ```
 
 3. **Instale as dependências**
+
 ```bash
 pnpm install
 ```
 
-
 4. **Rode o projeto**
+
 ```bash
 npm run dev
 ```
@@ -128,10 +133,11 @@ A aplicação estará disponível em:
 ## 📌 Considerações finais
 
 Este projeto foi desenvolvido com foco em:
-- Clareza arquitetural
-- Organização de código
-- Boas práticas modernas de frontend
-- Aplicação realista para portfólio
+
+-   Clareza arquitetural
+-   Organização de código
+-   Boas práticas modernas de frontend
+-   Aplicação realista para portfólio
 
 Feedbacks e sugestões são bem-vindos.
 
