@@ -1,4 +1,11 @@
+.applayout__container {
+	min-height: 100vh;
+}
+
 .applayout__main_content {
+	padding: $space-lg;
+	padding-top: calc(70px + $space-lg);
+
 	@media (min-width: $breakpoint-lg) {
 		margin-left: 230px;
 		max-width: 1800px;
