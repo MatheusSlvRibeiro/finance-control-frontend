@@ -1,0 +1,47 @@
+.expense_table__head_row {
+	th {
+		text-align: start;
+		font-weight: $font-regular;
+		color: $secondary-foreground;
+		padding: $space-md $space-xs;
+	}
+
+	.expense_table__head_amount {
+		text-align: end;
+	}
+
+	.expense_table__head_actions {
+		text-align: center;
+	}
+}
+
+.expense_table__body {
+	.expense_table__body_description {
+		display: flex;
+		flex-direction: row;
+		padding: $space-md $space-xs;
+		gap: 0.8rem;
+		align-items: center;
+	}
+
+	.expense_table__body_cell {
+		padding: $space-md $space-xs;
+	}
+
+	.expense_table__body_cell_end {
+		color: $secondary-foreground;
+		text-align: end;
+		padding: $space-md $space-xs;
+	}
+	.expense_table__body_cell_center {
+		color: $secondary-foreground;
+		text-align: center;
+		padding: $space-md $space-xs;
+	}
+
+	.expense_table__body_action_button {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+}

@@ -1,0 +1,67 @@
+%button-base {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	justify-content: center;
+	font-weight: $font-bold;
+	border: none;
+	border-radius: $radius-lg;
+	transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s;
+}
+
+.default{
+	font-size: $font-md;
+	padding: $space-md $space-xl;
+}
+
+.default,
+.login {
+	@extend %button-base;
+	background-color: $background;
+	border: 1px solid $gray-light;
+	color: $secondary-foreground;
+	&:hover {
+		background-color: $accent;
+		color: $accent-foreground;
+	}
+}
+
+.login {
+	padding: $space-sm;
+
+}
+
+.register {
+	@extend %button-base;
+	background: linear-gradient(to right, $primary, $accent);
+	color: $white;
+	padding: $space-md $space-2xl;
+	font-size: $font-xl;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+
+	&:hover {
+		transform: scale(1.02);
+	}
+}
+
+.create{
+	@extend %button-base;
+	background: linear-gradient(to right, $primary, $accent);
+	color: $white;
+	padding: $space-sm $space-xl;
+	font-size: $font-lg;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+	&:hover{
+		background: linear-gradient(to right, lighten($primary, 5%), lighten($accent, 5%));
+	}
+}
+
+.disabled{
+	@extend %button-base;
+	color: $white;
+	background-color: $gray-muted;
+	color: $white;
+	padding: $space-md $space-2xl;
+}
