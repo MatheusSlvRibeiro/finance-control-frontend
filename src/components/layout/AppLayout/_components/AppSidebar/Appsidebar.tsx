@@ -13,12 +13,6 @@ interface Sidebar {
 	onClose?: () => void;
 }
 
-interface MenuItem {
-	name: string;
-	path: string;
-	icon: React.ElementType;
-}
-
 export default function AppSidebar({ open, onClose }: Sidebar) {
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -45,8 +39,6 @@ export default function AppSidebar({ open, onClose }: Sidebar) {
 			path: "/categories",
 		},
 	];
-
-	const isActive = (path: string) => location.pathname === path;
 
 	const handleNavigate = async (path: string) => {
 		navigate(path);
