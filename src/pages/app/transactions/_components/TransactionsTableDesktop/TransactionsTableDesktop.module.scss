@@ -1,0 +1,61 @@
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.head {
+	border-bottom: 1px solid $border;
+}
+
+.body {
+	tr + tr {
+		border-top: 1px solid $border;
+	}
+}
+
+.headCell {
+	text-align: start;
+	font-weight: $font-regular;
+	color: $secondary-foreground;
+	padding: $space-md $space-xs;
+}
+
+.headCellEnd {
+	text-align: end;
+}
+
+.cell {
+	padding: $space-sm;
+}
+
+.cellEnd {
+	text-align: end;
+}
+
+.categoryPill {
+	padding: $space-xxs;
+	border-radius: $radius-lg;
+	text-align: center;
+	color: $white;
+	width: fit-content;
+}
+
+.cellActions {
+	padding: $space-sm;
+	vertical-align: middle;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	button {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: transparent;
+		border: none;
+		padding: 0;
+		color: inherit;
+	}
+}
