@@ -1,6 +1,7 @@
 import AppLayout from "@components/layout/AppLayout/AppLayout";
 import AccountsPage from "@pages/app/accounts/AccountsPage";
 import Dashboard from "@pages/app/dashboard/Dashboard";
+import TransactionsPage from "@pages/app/transactions/TransactionsPage";
 import Login from "@pages/auth/login/page";
 import Register from "@pages/auth/register/page";
 import Home from "@pages/Home/Home";
@@ -18,6 +19,7 @@ export default function AppRoutes() {
 				<Route element={<AppLayout />}>
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/accounts" element={<AccountsPage />} />
+					<Route path="/transactions" element={<TransactionsPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
