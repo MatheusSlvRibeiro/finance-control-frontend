@@ -1,0 +1,93 @@
+.accountsCard__grid {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	@media (min-width: $breakpoint-md) {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+	}
+
+	.accountsCard {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		background-color: $white;
+		padding: $space-sm;
+		border-radius: $radius-lg;
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+		.accountsCard__header {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0.6rem;
+
+			.accountsCard__header_icon {
+				padding: $space-sm;
+				background-color: $gray-light;
+				border-radius: $radius-lg;
+				display: flex;
+			}
+
+			.accountsCard__header_name {
+				font-weight: $font-medium;
+			}
+
+			.accountsCard__header_type {
+				font-weight: $font-regular;
+				color: $secondary-foreground;
+			}
+
+			.accountsCard__header_icon_edit {
+				border: none;
+				background-color: transparent;
+				display: flex;
+			}
+		}
+
+		.accountsCard__metrics {
+			display: flex;
+			flex-direction: column;
+
+			.accountsCard__metric_amount {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding: $space-xxs 0;
+			}
+		}
+
+		.accountsCard__currentBalance {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 0.2rem;
+			background-color: $background;
+			align-items: center;
+			padding: $space-sm;
+			border-radius: $radius-lg;
+		}
+
+		.accountsCard__currentBalance_label {
+			font-weight: $font-medium;
+		}
+
+		.accountsCard__currentBalance_value {
+			font-weight: $font-medium;
+		}
+
+		.amountIncome {
+			color: $income;
+		}
+
+		.amountExpense {
+			color: $expense;
+		}
+
+		.amountDefault {
+			color: $secondary-foreground;
+		}
+	}
+}
