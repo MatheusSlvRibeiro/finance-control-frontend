@@ -1,0 +1,19 @@
+.netWorth {
+	background: $background-linear-gradient;
+	padding: $space-md $space-xl;
+	border-radius: $radius-lg;
+	color: $white;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.netWorth_label {
+		font-weight: $font-regular;
+		font-size: $font-lg;
+	}
+
+	.netWorth_value {
+		font-size: $font-3xl;
+		font-weight: $font-bold;
+	}
+}

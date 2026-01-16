@@ -10,7 +10,9 @@ export function Header() {
 				<Logo />
 
 				<Link to="/login">
-					<Button variant="login">Entrar</Button>
+					<Button 
+						size="sm"
+						variant="login">Entrar</Button>
 				</Link>
 			</div>
 		</header>

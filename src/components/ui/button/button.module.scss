@@ -12,7 +12,6 @@
 
 .default {
 	font-size: $font-md;
-	padding: $space-md $space-xl;
 }
 
 .default,
@@ -33,10 +32,8 @@
 
 .register {
 	@extend %button-base;
-	background: linear-gradient(to right, $primary, $accent);
+	background: $background-linear-gradient;
 	color: $white;
-	padding: $space-md $space-2xl;
-	font-size: $font-xl;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 
 	&:hover {
@@ -46,18 +43,14 @@
 
 .create {
 	@extend %button-base;
-	background: linear-gradient(to right, $primary, $accent);
+	background: $background-linear-gradient;
 	color: $white;
 	padding: $space-sm $space-xl;
 	font-size: $font-lg;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 
 	&:hover {
-		background: linear-gradient(
-			to right,
-			color.adjust($primary, $lightness: 5%),
-			color.adjust($accent, $lightness: 5%)
-		);
+		background: $background-linear-gradient;
 	}
 }
 
@@ -66,5 +59,19 @@
 	color: $white;
 	background-color: $gray-muted;
 	color: $white;
+	padding: $space-md $space-2xl;
+}
+
+.sizeSm {
+	padding: $space-sm $space-md;
+	font-size: $font-md;
+}
+
+.sizeMd {
+	padding: $space-md $space-xl;
+}
+
+.sizeLg {
+	font-size: $font-xl;
 	padding: $space-md $space-2xl;
 }
