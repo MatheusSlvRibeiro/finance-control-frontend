@@ -1,0 +1,53 @@
+.grid {
+	display: flex;
+	flex-direction: column;
+}
+
+.card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: $space-md;
+	background-color: $white;
+	border-bottom: 1px solid $border;
+	padding: $space-sm $space-md;
+}
+
+.cardLeft {
+	display: flex;
+	align-items: center;
+	gap: $space-sm;
+	min-width: 0;
+}
+
+.colorDot {
+	width: 10px;
+	height: 10px;
+	border-radius: 999px;
+	flex: 0 0 auto;
+}
+
+.label {
+	font-weight: $font-medium;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.type {
+	font-size: $font-sm;
+	color: $secondary-foreground;
+	flex: 0 0 auto;
+}
+
+.empty {
+	color: $secondary-foreground;
+	padding: $space-md 0;
+}
+
+.editButton{
+	background-color: transparent;
+	border: none;
+	display: flex;
+	cursor: pointer;
+}
