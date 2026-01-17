@@ -1,6 +1,6 @@
 import AppLayout from "@components/layout/AppLayout/AppLayout";
 import AccountsPage from "@pages/app/accounts/AccountsPage";
-import CategoriesPage from "@pages/app/categories/categoriesPage";
+import CategoriesPage from "@pages/app/categories/CategoriesPage";
 import Dashboard from "@pages/app/dashboard/Dashboard";
 import TransactionsPage from "@pages/app/transactions/TransactionsPage";
 import Login from "@pages/auth/login/page";
@@ -20,7 +20,10 @@ export default function AppRoutes() {
 				<Route element={<AppLayout />}>
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/accounts" element={<AccountsPage />} />
-					<Route path="/transactions" element={<TransactionsPage />} />
+					<Route
+						path="/transactions"
+						element={<TransactionsPage />}
+					/>
 					<Route path="/Categories" element={<CategoriesPage />} />
 				</Route>
 			</Routes>
