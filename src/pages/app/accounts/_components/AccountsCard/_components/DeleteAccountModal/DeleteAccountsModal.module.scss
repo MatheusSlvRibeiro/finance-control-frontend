@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.text {
+	font-weight: $font-regular;
+	font-size: $font-sm;
+	color: $secondary-foreground;
+}
+
+.name {
+	font-weight: $font-bold;
+	color: $dark;
+}
+
+.modal_buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	justify-content: end;
+}

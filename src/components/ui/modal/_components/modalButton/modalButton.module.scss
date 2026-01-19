@@ -1,0 +1,56 @@
+%button-base {
+	background-color: transparent;
+	border: 1px solid $gray-light;
+	padding: $space-sm $space-md;
+	border-radius: $radius-lg;
+	cursor: pointer;
+}
+
+.default {
+	@extend %button-base;
+}
+
+.cancel_success {
+	@extend %button-base;
+
+	color: $expense;
+	border: 1px solid $expense;
+
+	&:hover {
+		color: $white;
+		background-color: $expense;
+	}
+}
+
+.cancel_delete{
+	@extend %button-base;
+
+	color: $income;
+	border: 1px solid $income;
+
+	&:hover {
+		background-color: lighten($income, 60%);
+	}
+}
+
+.delete {
+	@extend %button-base;
+
+	color: $white;
+	background-color: $expense;
+
+	&:hover {
+		background-color: darken($expense, 10%);
+	}
+}
+
+.save {
+	@extend %button-base;
+
+	color: $white;
+	background-color: $income;
+
+	&:hover{
+		background-color: darken($income, 5%);
+	}
+}

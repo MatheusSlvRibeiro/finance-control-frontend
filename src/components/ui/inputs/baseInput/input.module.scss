@@ -1,0 +1,45 @@
+.input {
+	display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: start;
+    justify-content: space-between;
+
+    label {
+        color: $dark;
+        font-weight: $font-medium;
+        font-size: $font-sm;
+    }
+}
+
+.field {
+	position: relative;
+	width: 100%;
+}
+
+.prefix {
+	position: absolute;
+	left: $space-xs;
+	top: 50%;
+	transform: translateY(-50%);
+	pointer-events: none;
+	opacity: 0.9;
+}
+
+.control {
+	padding: $space-xs;
+	border-radius: $radius-md;
+	border: 1px solid $gray-light;
+	width: 100%;
+	outline: none;
+
+	&::placeholder {
+		color: $dark;
+		font-weight: $font-regular;
+		font-size: $font-sm;
+	}
+}
+
+.hasPrefix {
+	padding-left: 2.5rem;
+}

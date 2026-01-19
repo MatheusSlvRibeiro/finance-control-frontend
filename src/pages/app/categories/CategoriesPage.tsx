@@ -16,7 +16,7 @@ export default function CategoriesPage() {
 
 	const filtered = useMemo(
 		() => data.filter((c) => c.type === activeTab),
-		[data, activeTab]
+		[data, activeTab],
 	);
 
 	return (

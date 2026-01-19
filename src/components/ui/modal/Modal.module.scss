@@ -1,0 +1,41 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 12px;
+	padding: $space-lg;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    background: transparent;
+    padding: 6px;
+    display: inline-flex;
+    border-radius: 10px;
+	cursor: pointer;
+}
+
+.closeButton:active {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.text {
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}

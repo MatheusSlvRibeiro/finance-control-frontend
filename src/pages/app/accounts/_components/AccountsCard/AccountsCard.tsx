@@ -1,14 +1,44 @@
+import { useState } from "react";
 import { formatCurrency } from "@utils/formatCurrency";
-import styles from "./AccountsCard.module.scss";
+import type { RowId, Account } from "./_components/accountCardType";
+import { Modal } from "@components/ui/modal/Modal";
 import {
 	Building2,
-	EllipsisVertical,
 	PiggyBank,
 	Wallet,
 } from "lucide-react";
-import type { RowId, Account } from "./accountCardType";
+import styles from "./AccountsCard.module.scss";
+import { Dropdown } from "@components/ui/dropdown/Dropdown";
+import { EditAccountsModal } from "./_components/EditAccountModal/EditAccountModal";
+import { DeleteAccountsModal } from "./_components/DeleteAccountModal/DeleteAccountModal";
+
+type ModalType = "edit" | "delete" | null;
 
 export default function AccountsCard() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modalType, setModalType] = useState<ModalType>(null);
+	const [selectedAccount, setSelectedAccount] = useState<Account | null>(
+		null,
+	);
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+		setModalType(null);
+		setSelectedAccount(null);
+	};
+
+	const openEdit = (account: Account) => {
+		setSelectedAccount(account);
+		setModalType("edit");
+		setIsModalOpen(true);
+	};
+
+	const openDelete = (account: Account) => {
+		setSelectedAccount(account);
+		setModalType("delete");
+		setIsModalOpen(true);
+	};
+
 	const userAccounts = [
 		{
 			icon: <Building2 />,
@@ -112,118 +142,153 @@ export default function AccountsCard() {
 	const metricRows = rows.filter((row) => row.id !== "currentBalance");
 
 	return (
-		<div className={styles.accountsCard__grid}>
-			{userAccounts.map((item) => (
-				<div className={styles.accountsCard} key={item.name}>
-					<div className={styles.accountsCard__header}>
+		<>
+			<div className={styles.accountsCard__grid}>
+				{userAccounts.map((item) => (
+					<div className={styles.accountsCard} key={item.name}>
 						<div className={styles.accountsCard__header}>
-							<div className={styles.accountsCard__header_icon}>
-								{item.icon}
-							</div>
-
-							<div>
+							<div className={styles.accountsCard__header}>
 								<div
-									className={styles.accountsCard__header_name}
+									className={styles.accountsCard__header_icon}
 								>
-									{item.name}
+									{item.icon}
 								</div>
-								<div
-									className={styles.accountsCard__header_type}
-								>
-									{item.type}
-								</div>
-							</div>
-						</div>
 
-						<div>
-							<button
-								className={
-									styles.accountsCard__header_icon_edit
-								}
-							>
-								<EllipsisVertical />
-							</button>
-						</div>
-					</div>
-
-					<div className={styles.accountsCard__metrics}>
-						{metricRows.map((row) => {
-							const value = row.getValue(item);
-							const amountClassName = getAmountClassName(
-								row.id,
-								value
-							);
-
-							return (
-								<div
-									className={
-										styles.accountsCard__metric_amount
-									}
-									key={row.id}
-								>
+								<div>
 									<div
 										className={
-											styles.accountsCard__metric_amount_label
+											styles.accountsCard__header_name
 										}
 									>
-										{row.label}
+										{item.name}
 									</div>
 									<div
 										className={
-											styles.accountsCard__metric_amount_value +
-											(amountClassName
-												? ` ${amountClassName}`
-												: "")
+											styles.accountsCard__header_type
 										}
 									>
-										{formatCurrency(value)}
+										{item.type}
 									</div>
 								</div>
-							);
-						})}
-					</div>
+							</div>
 
-					{currentBalanceRow
-						? (() => {
-								const currentBalanceValue =
-									currentBalanceRow.getValue(item);
-								const currentBalanceClassName =
-									getAmountClassName(
-										currentBalanceRow.id,
-										currentBalanceValue
-									);
+							<div className={styles.dropdown_block}>
+								<Dropdown align="right">
+									<button
+										type="button"
+										role="menuitem"
+										onClick={() => openEdit(item)}
+									>
+										Editar
+									</button>
+									<button
+										type="button"
+										role="menuitem"
+										onClick={() => openDelete(item)}
+									>
+										Excluir
+									</button>
+								</Dropdown>
+							</div>
+						</div>
+
+						<div className={styles.accountsCard__metrics}>
+							{metricRows.map((row) => {
+								const value = row.getValue(item);
+								const amountClassName = getAmountClassName(
+									row.id,
+									value,
+								);
 
 								return (
 									<div
 										className={
-											styles.accountsCard__currentBalance
+											styles.accountsCard__metric_amount
 										}
+										key={row.id}
 									>
 										<div
 											className={
-												styles.accountsCard__currentBalance_label
+												styles.accountsCard__metric_amount_label
 											}
 										>
-											{currentBalanceRow.label}
+											{row.label}
 										</div>
 										<div
 											className={
-												styles.accountsCard__currentBalance_value +
-												(currentBalanceClassName
-													? ` ${currentBalanceClassName}`
+												styles.accountsCard__metric_amount_value +
+												(amountClassName
+													? ` ${amountClassName}`
 													: "")
 											}
 										>
-											{formatCurrency(
-												currentBalanceValue
-											)}
+											{formatCurrency(value)}
 										</div>
 									</div>
 								);
-						  })()
-						: null}
-				</div>
-			))}
-		</div>
+							})}
+						</div>
+
+						{currentBalanceRow
+							? (() => {
+									const currentBalanceValue =
+										currentBalanceRow.getValue(item);
+									const currentBalanceClassName =
+										getAmountClassName(
+											currentBalanceRow.id,
+											currentBalanceValue,
+										);
+
+									return (
+										<div
+											className={
+												styles.accountsCard__currentBalance
+											}
+										>
+											<div
+												className={
+													styles.accountsCard__currentBalance_label
+												}
+											>
+												{currentBalanceRow.label}
+											</div>
+											<div
+												className={
+													styles.accountsCard__currentBalance_value +
+													(currentBalanceClassName
+														? ` ${currentBalanceClassName}`
+														: "")
+												}
+											>
+												{formatCurrency(
+													currentBalanceValue,
+												)}
+											</div>
+										</div>
+									);
+								})()
+							: null}
+					</div>
+				))}
+			</div>
+
+			<Modal isOpen={isModalOpen} onClose={closeModal}>
+				{modalType === "edit" && selectedAccount && (
+					<EditAccountsModal
+						closeModal={closeModal}
+						accountName={selectedAccount.name}
+						openingBalance={selectedAccount.openingBalance}
+						type={selectedAccount.type}
+					/>
+				)}
+
+				{modalType === "delete" && selectedAccount && (
+					<DeleteAccountsModal
+						closeModal={closeModal}
+						name={selectedAccount.name}
+					/>
+				)}
+			</Modal>
+		</>
 	);
 }

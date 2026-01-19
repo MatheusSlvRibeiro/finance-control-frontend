@@ -1,0 +1,65 @@
+.root {
+	position: relative;
+	display: inline-flex;
+}
+
+.trigger {
+	cursor: pointer;
+	border: none;
+	background: transparent;
+	display: inline-flex;
+	align-items: center;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: calc(100% + 8px);
+	min-width: 180px;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 12px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+	padding: 8px;
+	z-index: 1000;
+
+	padding: $space-sm 0;
+}
+
+.left {
+	left: 0;
+}
+
+.right {
+	right: 0;
+}
+
+.items {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	max-width: 100%;
+
+	* {
+		background-color: transparent;
+		border: none;
+		font-weight: $font-regular;
+		text-align: left;
+		cursor: pointer;
+		padding: $space-sm;
+
+		&:hover {
+			background-color: $gray-light;
+		}
+
+		&:active {
+			background-color: $gray-light;
+		}
+
+		&:focus-visible {
+			outline: 2px solid $secondary-foreground;
+			outline-offset: 2px;
+		}
+	}
+}

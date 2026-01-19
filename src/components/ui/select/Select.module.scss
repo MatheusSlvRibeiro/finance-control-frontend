@@ -1,0 +1,109 @@
+.select {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	align-items: start;
+	justify-content: space-between;
+	position: relative;
+	width: 100%;
+
+	label {
+		color: $dark;
+		font-weight: $font-medium;
+		font-size: $font-sm;
+	}
+}
+
+.control {
+	padding: $space-xs;
+	border-radius: $radius-md;
+	border: 1px solid $gray-light;
+	width: 100%;
+	outline: none;
+	background: $white;
+	color: $dark;
+	font-weight: $font-regular;
+	font-size: $font-sm;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+.value {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.placeholder {
+	opacity: 0.7;
+}
+
+.icon,
+.optionIcon {
+	display: inline-flex;
+	align-items: center;
+}
+
+.caret {
+	display: inline-flex;
+	align-items: center;
+	opacity: 0.85;
+}
+
+.list {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(100% + 0.35rem);
+	margin: 0;
+	padding: 0.35rem;
+	border-radius: $radius-md;
+	border: 1px solid $gray-light;
+	background: $white;
+	list-style: none;
+	max-height: 240px;
+	overflow: auto;
+	z-index: 20;
+}
+
+.option {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.6rem;
+	border-radius: $radius-md;
+	cursor: pointer;
+
+	&:hover,
+	&[data-active="true"] {
+		background: $green;
+		color: $white;
+	}
+
+	&[data-selected="true"] {
+		background: $green;
+		color: $white;
+	}
+
+	&[data-disabled="true"] {
+		opacity: 0.5;
+		cursor: not-allowed;
+
+		&:hover {
+			background: transparent;
+			color: inherit;
+		}
+	}
+}
+
+.optionLabel {
+	font-size: $font-sm;
+}

@@ -1,0 +1,56 @@
+.modal {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.text{
+	display: flex;
+	flex-direction: column;
+	gap: .3rem;
+
+	p {
+		color: $secondary-foreground;
+	}
+}
+
+.modal_form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.modal_input {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	align-items: start;
+	justify-content: space-between;
+
+	label {
+		color: $dark;
+		font-weight: $font-medium;
+		font-size: $font-sm;
+	}
+
+	input {
+		padding: $space-xs;
+		border-radius: $radius-md;
+		border: 1px solid $gray-light;
+		width: 100%;
+		outline: none;
+
+		&::placeholder {
+			color: $dark;
+			font-weight: $font-regular;
+			font-size: $font-sm;
+		}
+	}
+}
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	justify-content: end;
+}
