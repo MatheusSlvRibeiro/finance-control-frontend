@@ -7,6 +7,7 @@ import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput
 import styles from "./CreateAccounts.module.scss";
 import type { SelectOption } from "@components/ui/select/Select";
 import { Building2, PiggyBank, Wallet } from "lucide-react";
+import { FormModal } from "@components/ui/modal/formModal/FormModal";
 
 export function CreateAccountsModal({
 	closeModal,
@@ -36,52 +37,41 @@ export function CreateAccountsModal({
 
 	return (
 		<div className={styles.modal}>
-			<div className={styles.text}>
-				<h3>Nova conta</h3>
-				<p>Cadastre as informações da sua conta</p>
-			</div>
-			<div className={styles.modal_form}>
-				<Input
-					id="name"
-					name="name"
-					label="Nome"
-					placeholder="Nome"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-				/>
+			<FormModal
+				title="Nova conta"
+				message="Cadastre as informações da sua conta"
+				closeModal={closeModal}
+				handleSave={handleSave}
+			>
+				<div className={styles.form}>
+					<Input
+						id="name"
+						name="name"
+						label="Nome"
+						placeholder="Nome"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
 
-				<CurrencyInput
-					id="openingBalance"
-					name="openingBalance"
-					label="Saldo inicial"
-					valueInCents={openingBalanceInCents}
-					onChangeInCents={setOpeningBalanceInCents}
-				/>
+					<CurrencyInput
+						id="openingBalance"
+						name="openingBalance"
+						label="Saldo inicial"
+						valueInCents={openingBalanceInCents}
+						onChangeInCents={setOpeningBalanceInCents}
+					/>
 
-				<Select
-					id="accountType"
-					name="accountType"
-					label="Tipo de conta"
-					options={options}
-					value={accountType}
-					onChange={setAccountType}
-					placeholder="Selecione o tipo de conta"
-				/>
-			</div>
-
-			<div className={styles.buttons}>
-				<ModalButton
-					variant="cancel-success"
-					text="Cancelar"
-					onClick={closeModal}
-				/>
-
-				<ModalButton
-					text="Salvar"
-					variant="save"
-					onClick={handleSave}
-				/>
-			</div>
+					<Select
+						id="accountType"
+						name="accountType"
+						label="Tipo de conta"
+						options={options}
+						value={accountType}
+						onChange={setAccountType}
+						placeholder="Selecione o tipo de conta"
+					/>
+				</div>
+			</FormModal>
 		</div>
 	);
 }

@@ -22,13 +22,10 @@
 			"@pages/*": ["src/pages/*"],
 			"@styles/*": ["src/styles/*"],
 			"@utils/*": ["src/utils/*"],
-			"@types/*": ["src/types/*"]
+			"@appTypes/*": ["src/types/*"],
+			"@services/*": ["src/services/*"]
 		}
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"**/*.mts"
-	],
+	"include": ["**/*.ts", "**/*.tsx", "**/*.mts"],
 	"exclude": ["node_modules", ".next", "next-env.d.ts"]
 }
