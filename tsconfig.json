@@ -23,7 +23,8 @@
 			"@styles/*": ["src/styles/*"],
 			"@utils/*": ["src/utils/*"],
 			"@appTypes/*": ["src/types/*"],
-			"@services/*": ["src/services/*"]
+			"@services/*": ["src/services/*"],
+			"@mocks/*": ["src/mocks/*"]
 		}
 	},
 	"include": ["**/*.ts", "**/*.tsx", "**/*.mts"],
