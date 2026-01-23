@@ -1,90 +1,20 @@
 import { useState } from "react";
 import { formatCurrency } from "@utils/formatCurrency";
 import type { Account } from "@appTypes/account";
-import { Dropdown } from "@components/ui/dropdown/Dropdown";
 import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
 import { EditAccountsModal } from "./_components/EditAccountModal/EditAccountModal";
 import { DeleteModal } from "@components/ui/modal/deleteModal/DeleteModal";
 import styles from "./AccountsCard.module.scss";
-import { userAccounts } from "@mocks/accounts/userAccounts";
-
-type RowKind = "default" | "income" | "expense" | "balance";
+import { currentBalanceRow, getAmountClassName, metricRows } from "./helpers";
+import { AccountHeader } from "./_components/AccountHeader/AccountHeader";
+import { AccountMetrics } from "./_components/AccountMetrics/AccountMetrics";
+import { useAccounts } from "@hooks/useAccounts";
 
 type ModalType = "edit" | "delete" | null;
 
-export type RowId =
-	| "openingBalance"
-	| "incomes"
-	| "incomingTransfer"
-	| "outgoingTransfers"
-	| "expenses"
-	| "currentBalance";
-
-const rows = [
-	{
-		id: "openingBalance",
-		label: "Saldo inicial",
-		getValue: (acc: Account) => acc.openingBalance,
-	},
-	{
-		id: "incomes",
-		label: "Receitas",
-		getValue: (acc: Account) => acc.incomes,
-	},
-	{
-		id: "incomingTransfer",
-		label: "Transf. creditadas",
-		getValue: (acc: Account) => acc.incomingTransfer,
-	},
-	{
-		id: "outgoingTransfers",
-		label: "Transf. debitadas",
-		getValue: (acc: Account) => acc.outgoingTransfers,
-	},
-	{
-		id: "expenses",
-		label: "Despesas",
-		getValue: (acc: Account) => acc.expenses,
-	},
-	{
-		id: "currentBalance",
-		label: "Saldo atual",
-		getValue: (acc: Account) => acc.balance,
-	},
-] satisfies Array<{
-	id: RowId;
-	label: string;
-	getValue: (acc: Account) => number;
-}>;
-
-const ROW_KIND: Record<RowId, RowKind> = {
-	openingBalance: "balance",
-	incomes: "income",
-	incomingTransfer: "income",
-	outgoingTransfers: "expense",
-	expenses: "expense",
-	currentBalance: "balance",
-};
-
-const currentBalanceRow = rows.find((row) => row.id === "currentBalance");
-const metricRows = rows.filter((row) => row.id !== "currentBalance");
-
-const getAmountClassName = (rowId: RowId, value: number) => {
-	const kind = ROW_KIND[rowId];
-
-	if (value === 0) return styles.amountDefault;
-
-	if (kind === "income") return styles.amountIncome;
-	if (kind === "expense") return styles.amountExpense;
-
-	if (kind === "balance") {
-		return value > 0 ? styles.amountIncome : styles.amountExpense;
-	}
-
-	return undefined;
-};
-
 export default function AccountsCard() {
+	const { data: accounts } = useAccounts();
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalType, setModalType] = useState<ModalType>(null);
 	const [selectedAccount, setSelectedAccount] = useState<Account | null>(
@@ -112,51 +42,15 @@ export default function AccountsCard() {
 	return (
 		<>
 			<div className={styles.accountsCard__grid}>
-				{userAccounts.map((item) => (
+				{accounts.map((item) => (
 					<div className={styles.accountsCard} key={item.name}>
-						<div className={styles.accountsCard__header}>
-							<div className={styles.accountsCard__header}>
-								<div
-									className={styles.accountsCard__header_icon}
-								></div>
-
-								<div>
-									<div
-										className={
-											styles.accountsCard__header_name
-										}
-									>
-										{item.name}
-									</div>
-									<div
-										className={
-											styles.accountsCard__header_type
-										}
-									>
-										{item.type}
-									</div>
-								</div>
-							</div>
-
-							<div className={styles.dropdown_block}>
-								<Dropdown align="right">
-									<button
-										type="button"
-										role="menuitem"
-										onClick={() => openEdit(item)}
-									>
-										Editar
-									</button>
-									<button
-										type="button"
-										role="menuitem"
-										onClick={() => openDelete(item)}
-									>
-										Excluir
-									</button>
-								</Dropdown>
-							</div>
-						</div>
+						<AccountHeader
+							name={item.name}
+							type={item.type}
+							item={item}
+							openEdit={() => openEdit(item)}
+							openDelete={() => openDelete(item)}
+						/>
 
 						<div className={styles.accountsCard__metrics}>
 							{metricRows.map((row) => {
@@ -167,30 +61,12 @@ export default function AccountsCard() {
 								);
 
 								return (
-									<div
-										className={
-											styles.accountsCard__metric_amount
-										}
-										key={row.id}
-									>
-										<div
-											className={
-												styles.accountsCard__metric_amount_label
-											}
-										>
-											{row.label}
-										</div>
-										<div
-											className={
-												styles.accountsCard__metric_amount_value +
-												(amountClassName
-													? ` ${amountClassName}`
-													: "")
-											}
-										>
-											{formatCurrency(value)}
-										</div>
-									</div>
+									<AccountMetrics
+										id={row.id}
+										label={row.label}
+										className={amountClassName}
+										value={value}
+									/>
 								);
 							})}
 						</div>

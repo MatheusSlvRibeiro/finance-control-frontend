@@ -1,7 +1,6 @@
 import { transactionsMock } from "@mocks/transactions/transactions.mock";
 import type { Transaction, TransactionType } from "@appTypes/transaction";
 import { CategoryType } from "@appTypes/category";
-import { getNiceTickValues } from "recharts";
 
 const toTransactionType = (raw: string): TransactionType =>
 	raw === "income" || raw === "expense" ? raw : "expense";

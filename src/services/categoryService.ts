@@ -1,4 +1,4 @@
-import { categories } from "@mocks/categories/Categories";
+import { categories } from "@mocks/categories/Categories.mock";
 import type { Category, CategoryType } from "@appTypes/category";
 
 export const categoryService = {

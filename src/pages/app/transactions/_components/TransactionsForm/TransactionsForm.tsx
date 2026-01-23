@@ -5,9 +5,8 @@ import { Input } from "@components/ui/inputs/baseInput/input";
 import { Select } from "@components/ui/select/Select";
 import { DateInput } from "@components/ui/inputs/DateInput/DateInput";
 import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
-import { userAccounts } from "@mocks/accounts/userAccounts";
 import { useCategories } from "@hooks/useCategories";
-import { accountTypes } from "src/constants/accountTypes.constants";
+import { useAccounts } from "@hooks/useAccounts";
 
 type TransactionFormValues = {
 	description: string;
@@ -60,22 +59,25 @@ export function TransactionForm({
 	onSubmit,
 }: TransactionFormProps) {
 	const { data: categories } = useCategories();
+	const { data: accounts } = useAccounts();
 
 	const categoryOptions: SelectOption[] = useMemo(
-		() => categories.map((c) => ({ 
-			value: c.id, 
-			label: c.name,
-			icon: c.icon})),
+		() =>
+			categories.map((c) => ({
+				value: c.id,
+				label: c.name,
+				icon: c.icon,
+			})),
 		[categories],
 	);
 
 	const accountOptions: SelectOption[] = useMemo(
 		() =>
-			userAccounts.map((a) => ({
-				value: a.name,
+			accounts.map((a) => ({
+				value: a.id,
 				label: a.name,
 			})),
-		[],
+		[accounts],
 	);
 
 	const [description, setDescription] = useState("");
@@ -100,7 +102,7 @@ export function TransactionForm({
 		setDate(toDateInputValue(initialValues?.date));
 
 		setValueInCents(Math.round(((initialValues as any)?.value ?? 0) * 100));
-	}, [initialValues, categoryOptions]);
+	}, [initialValues, categoryOptions, accountOptions]);
 
 	return (
 		<form
@@ -136,7 +138,7 @@ export function TransactionForm({
 				id="account"
 				name="account"
 				label="Conta"
-				options={accountTypes}
+				options={accountOptions}
 				value={account}
 				onChange={setAccount}
 			/>
