@@ -1,14 +1,6 @@
 import { EllipsisVertical } from "lucide-react";
 import styles from "./CategoriesList.module.scss";
-
-export type CategoryType = "income" | "expense";
-
-export type Category = {
-	id: string;
-	label: string;
-	type: CategoryType;
-	color: string;
-};
+import { Category } from "@appTypes/category";
 
 type CategoriesListProps = {
 	categories: Category[];
@@ -31,12 +23,8 @@ export function CategoriesList({ categories }: CategoriesListProps) {
 							style={{ backgroundColor: category.color }}
 							aria-hidden
 						/>
-						<div className={styles.label}>{category.label}</div>
+						<div className={styles.label}>{category.name}</div>
 					</div>
-
-					{/* <div className={styles.type}>
-						{category.type === "income" ? "Receita" : "Despesa"}
-					</div> */}
 
 					<div>
 						<button className={styles.editButton}>

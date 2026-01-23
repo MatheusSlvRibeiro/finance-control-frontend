@@ -1,52 +1,24 @@
 import { useState } from "react";
 import { formatCurrency } from "@utils/formatCurrency";
-import type { RowId, Account } from "@types/account";
+import type { Account } from "@appTypes/account";
 import { Dropdown } from "@components/ui/dropdown/Dropdown";
 import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
 import { EditAccountsModal } from "./_components/EditAccountModal/EditAccountModal";
 import { DeleteModal } from "@components/ui/modal/deleteModal/DeleteModal";
-import { Building2, PiggyBank, Wallet } from "lucide-react";
 import styles from "./AccountsCard.module.scss";
+import { userAccounts } from "@mocks/accounts/userAccounts";
 
 type RowKind = "default" | "income" | "expense" | "balance";
 
 type ModalType = "edit" | "delete" | null;
 
-const userAccounts = [
-	{
-		icon: <Building2 />,
-		name: "Nubank",
-		type: "Conta corrente",
-		openingBalance: 5000,
-		incomes: 500,
-		incomingTransfer: 0,
-		outgoingTransfers: 100,
-		expenses: 50,
-		balance: 5350,
-	},
-	{
-		icon: <PiggyBank />,
-		name: "Inter",
-		type: "Poupança",
-		openingBalance: 500,
-		incomes: 500,
-		incomingTransfer: 100,
-		outgoingTransfers: 0,
-		expenses: 1100,
-		balance: 0,
-	},
-	{
-		icon: <Wallet />,
-		name: "Carteira",
-		type: "Carteira",
-		openingBalance: 100,
-		incomes: 300,
-		incomingTransfer: 0,
-		outgoingTransfers: 0,
-		expenses: 70,
-		balance: 330,
-	},
-];
+export type RowId =
+	| "openingBalance"
+	| "incomes"
+	| "incomingTransfer"
+	| "outgoingTransfers"
+	| "expenses"
+	| "currentBalance";
 
 const rows = [
 	{
@@ -146,9 +118,7 @@ export default function AccountsCard() {
 							<div className={styles.accountsCard__header}>
 								<div
 									className={styles.accountsCard__header_icon}
-								>
-									{item.icon}
-								</div>
+								></div>
 
 								<div>
 									<div
@@ -290,7 +260,7 @@ export default function AccountsCard() {
 							</>
 						}
 						closeModal={closeModal}
-						deleteMessage="Conta excluida com sucesso!"
+						deleteMessage="Conta excluída com sucesso!"
 					/>
 				)}
 			</BaseModal>

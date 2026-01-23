@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 import styles from "./TransactionsPage.module.scss";
 import { TransactionsTable } from "./_components/TransactionsTable/TransactionsTable";
 import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
-import { TransactionForm } from "./_components/TransactonsForm/TransactionsForm";
+import { TransactionForm } from "./_components/TransactionsForm/TransactionsForm";
 import { FormModal } from "@components/ui/modal/formModal/FormModal";
 import { useState } from "react";
 import { toast } from "react-toastify";

@@ -1,17 +1,9 @@
-import { ReactNode } from "react";
+export type AccountType = "checking" | "savings" | "wallet";
 
-export type RowId =
-	| "openingBalance"
-	| "incomes"
-	| "incomingTransfer"
-	| "outgoingTransfers"
-	| "expenses"
-	| "currentBalance";
-
-export type Account = {
+export interface Account {
+	id: string;
 	name: string;
-	type: string;
-	icon?: ReactNode;
+	type: AccountType;
 	openingBalance: number;
 	incomes: number;
 	incomingTransfer: number;

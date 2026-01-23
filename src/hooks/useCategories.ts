@@ -1,9 +1,9 @@
-import type { Transaction } from "@appTypes/transaction";
+import { categoryService } from "@services/categoryService";
 import { useCallback, useEffect, useState } from "react";
-import { transactionService } from "@services/transactionService";
+import type { Category } from "@appTypes/category";
 
-export function useTransactions() {
-	const [data, setData] = useState<Transaction[]>([]);
+export function useCategories() {
+	const [data, setData] = useState<Category[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<Error | null>(null);
 
@@ -12,13 +12,13 @@ export function useTransactions() {
 		setError(null);
 
 		try {
-			const list = await transactionService.getAll();
+			const list = await categoryService.getAll();
 			setData(list);
 		} catch (e) {
 			setError(
 				e instanceof Error
 					? e
-					: new Error("Erro ao carregar transações"),
+					: new Error("Erro ao carregar categorias"),
 			);
 		} finally {
 			setLoading(false);
@@ -33,14 +33,14 @@ export function useTransactions() {
 			setError(null);
 
 			try {
-				const list = await transactionService.getAll();
+				const list = await categoryService.getAll();
 				if (alive) setData(list);
 			} catch (e) {
 				if (alive)
 					setError(
 						e instanceof Error
 							? e
-							: new Error("Erro ao carregar transações"),
+							: new Error("Erro ao carregar categorias"),
 					);
 			} finally {
 				if (alive) setLoading(false);

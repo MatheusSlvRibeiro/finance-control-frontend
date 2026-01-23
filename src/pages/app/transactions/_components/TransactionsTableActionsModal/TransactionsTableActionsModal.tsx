@@ -1,10 +1,9 @@
 import { Transaction } from "@appTypes/transaction";
 import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
 import { FormModal } from "@components/ui/modal/formModal/FormModal";
-import { TransactionForm } from "../TransactonsForm/TransactionsForm";
+import { TransactionForm } from "../TransactionsForm/TransactionsForm";
 import { DeleteModal } from "@components/ui/modal/deleteModal/DeleteModal";
 import { TransactionsTableModalType } from "../TransactionsTable/TransactionsTable";
-
 
 type Props = {
 	isOpen: boolean;

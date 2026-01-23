@@ -3,21 +3,34 @@ import { PageHeader } from "@components/layout/PageHeader/PageHeader";
 import Button from "@components/ui/button/button";
 import { Minus, Plus } from "lucide-react";
 import styles from "./Categoriespage.module.scss";
-import categoriesData from "@data/categories.json";
 import { CategoriesList } from "./_components/CategoriesList/CategoriesList";
-import type { Category } from "./_components/CategoriesList/CategoriesList";
-
-type CategoryType = "income" | "expense";
+import { useCategories } from "@hooks/useCategories";
+import { CategoryType } from "@appTypes/category";
 
 export default function CategoriesPage() {
+	const { data: categories, loading, error, reload } = useCategories();
+
 	const [activeTab, setActiveTab] = useState<CategoryType>("income");
 
-	const data = categoriesData as Category[];
-
 	const filtered = useMemo(
-		() => data.filter((c) => c.type === activeTab),
-		[data, activeTab],
+		() => categories.filter((c) => c.type === activeTab),
+		[categories, activeTab],
 	);
+
+	if (loading) {
+		return <div className={styles.state}>Carregando categorias...</div>;
+	}
+
+	if (error) {
+		return (
+			<div className={styles.state}>
+				<p>Falha ao carregar: {error.message}</p>
+				<Button variant="default" size="md" onClick={reload}>
+					Tentar novamente
+				</Button>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.container}>
