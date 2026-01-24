@@ -33,12 +33,26 @@
 }
 
 .categoryPill {
+	display: inline-flex;
+	align-items: center;
+	gap: $space-xxs;
 	padding: $space-xxs;
 	border-radius: $radius-lg;
 	text-align: center;
 	font-size: $font-sm;
 	color: $white;
 	width: fit-content;
+}
+
+.categoryIcon {
+	display: inline-flex;
+	align-items: center;
+	line-height: 0;
+}
+
+.categoryLabel {
+	display: inline-flex;
+	align-items: center;
 }
 
 .cellActions {
@@ -48,6 +62,4 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-
-	
 }

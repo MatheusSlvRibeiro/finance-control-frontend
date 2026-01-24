@@ -9,6 +9,7 @@ import { currentBalanceRow, getAmountClassName, metricRows } from "./helpers";
 import { AccountHeader } from "./_components/AccountHeader/AccountHeader";
 import { AccountMetrics } from "./_components/AccountMetrics/AccountMetrics";
 import { useAccounts } from "@hooks/useAccounts";
+import { accountTypes } from "src/constants/accountTypes.constants";
 
 type ModalType = "edit" | "delete" | null;
 
@@ -39,79 +40,89 @@ export default function AccountsCard() {
 		setIsModalOpen(true);
 	};
 
+	const accountTypesMap = Object.fromEntries(
+		accountTypes.map((t) => [t.value, t]),
+	);
+
 	return (
 		<>
 			<div className={styles.accountsCard__grid}>
-				{accounts.map((item) => (
-					<div className={styles.accountsCard} key={item.name}>
-						<AccountHeader
-							name={item.name}
-							type={item.type}
-							item={item}
-							openEdit={() => openEdit(item)}
-							openDelete={() => openDelete(item)}
-						/>
+				{accounts.map((item) => {
+					const accountType =
+						accountTypesMap[item.type] || accountTypes[0];
 
-						<div className={styles.accountsCard__metrics}>
-							{metricRows.map((row) => {
-								const value = row.getValue(item);
-								const amountClassName = getAmountClassName(
-									row.id,
-									value,
-								);
+					return (
+						<div className={styles.accountsCard} key={item.name}>
+							<AccountHeader
+								icon={accountType.icon}
+								name={item.name}
+								type={accountType.label ?? item.type}
+								item={item}
+								openEdit={() => openEdit(item)}
+								openDelete={() => openDelete(item)}
+							/>
 
-								return (
-									<AccountMetrics
-										id={row.id}
-										label={row.label}
-										className={amountClassName}
-										value={value}
-									/>
-								);
-							})}
-						</div>
-
-						{currentBalanceRow
-							? (() => {
-									const currentBalanceValue =
-										currentBalanceRow.getValue(item);
-									const currentBalanceClassName =
-										getAmountClassName(
-											currentBalanceRow.id,
-											currentBalanceValue,
-										);
+							<div className={styles.accountsCard__metrics}>
+								{metricRows.map((row) => {
+									const value = row.getValue(item);
+									const amountClassName = getAmountClassName(
+										row.id,
+										value,
+									);
 
 									return (
-										<div
-											className={
-												styles.accountsCard__currentBalance
-											}
-										>
-											<div
-												className={
-													styles.accountsCard__currentBalance_label
-												}
-											>
-												{currentBalanceRow.label}
-											</div>
-											<div
-												className={
-													styles.accountsCard__currentBalance_value +
-													(currentBalanceClassName
-														? ` ${currentBalanceClassName}`
-														: "")
-												}
-											>
-												{formatCurrency(
-													currentBalanceValue,
-												)}
-											</div>
-										</div>
+										<AccountMetrics
+											id={row.id}
+											label={row.label}
+											className={amountClassName}
+											value={value}
+										/>
 									);
-								})()
-							: null}
-					</div>
-				))}
+								})}
+							</div>
+
+							{currentBalanceRow
+								? (() => {
+										const currentBalanceValue =
+											currentBalanceRow.getValue(item);
+										const currentBalanceClassName =
+											getAmountClassName(
+												currentBalanceRow.id,
+												currentBalanceValue,
+											);
+
+										return (
+											<div
+												className={
+													styles.accountsCard__currentBalance
+												}
+											>
+												<div
+													className={
+														styles.accountsCard__currentBalance_label
+													}
+												>
+													{currentBalanceRow.label}
+												</div>
+												<div
+													className={
+														styles.accountsCard__currentBalance_value +
+														(currentBalanceClassName
+															? ` ${currentBalanceClassName}`
+															: "")
+													}
+												>
+													{formatCurrency(
+														currentBalanceValue,
+													)}
+												</div>
+											</div>
+										);
+									})()
+								: null}
+						</div>
+					);
+				})}
 			</div>
 
 			<BaseModal isOpen={isModalOpen} onClose={closeModal}>

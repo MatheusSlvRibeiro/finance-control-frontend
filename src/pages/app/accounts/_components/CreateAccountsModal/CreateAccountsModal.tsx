@@ -5,9 +5,8 @@ import { Select } from "@components/ui/select/Select";
 import { Input } from "@components/ui/inputs/baseInput/input";
 import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
 import styles from "./CreateAccounts.module.scss";
-import type { SelectOption } from "@components/ui/select/Select";
-import { Building2, PiggyBank, Wallet } from "lucide-react";
 import { FormModal } from "@components/ui/modal/formModal/FormModal";
+import { accountTypes } from "src/constants/accountTypes.constants";
 
 export function CreateAccountsModal({
 	closeModal,
@@ -18,15 +17,7 @@ export function CreateAccountsModal({
 	const [openingBalanceInCents, setOpeningBalanceInCents] = useState(0);
 	const [accountType, setAccountType] = useState("");
 
-	const options: SelectOption[] = [
-		{
-			value: "checking",
-			label: "Conta corrente",
-			icon: <Building2 size={18} />,
-		},
-		{ value: "savings", label: "Poupança", icon: <PiggyBank size={18} /> },
-		{ value: "wallet", label: "Carteira", icon: <Wallet size={18} /> },
-	];
+	const options = accountTypes;
 
 	const handleSave = () => {
 		toast("Conta criada com sucesso!", {

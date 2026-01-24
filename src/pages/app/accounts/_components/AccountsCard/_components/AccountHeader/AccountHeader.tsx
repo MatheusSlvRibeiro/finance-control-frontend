@@ -1,8 +1,10 @@
 import { Dropdown } from "@components/ui/dropdown/Dropdown";
 import styles from "./AccountHeader.module.scss";
 import { Account } from "@appTypes/account";
+import { ReactNode } from "react";
 
 type HeaderProps = {
+	icon: ReactNode;
 	name: string;
 	type: string;
 	item: Account;
@@ -11,6 +13,7 @@ type HeaderProps = {
 };
 
 export function AccountHeader({
+	icon,
 	name,
 	type,
 	openEdit,
@@ -19,7 +22,7 @@ export function AccountHeader({
 	return (
 		<div className={styles.header}>
 			<div className={styles.header}>
-				<div className={styles.header_icon}></div>
+				<div className={styles.header_icon}>{icon}</div>
 
 				<div>
 					<div className={styles.header_name}>{name}</div>

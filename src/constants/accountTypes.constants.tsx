@@ -1,42 +1,20 @@
-import { Building, PiggyBank, TrendingUp, Wallet } from "lucide-react";
-import { ReactNode } from "react";
+import { Building2, PiggyBank, Wallet } from "lucide-react";
+import type { SelectOption } from "@components/ui/select/Select";
 
-export type SelectAccountOptionType =
-	| "checking"
-	| "savings"
-	| "wallet"
-	| "investments";
-
-export interface SelectAccountOption {
-	label: string;
-	value: string;
-	type: SelectAccountOptionType;
-	icon: ReactNode;
-}
-
-export const accountTypes: SelectAccountOption[] = [
+export const accountTypes: SelectOption[] = [
 	{
+		value: "checking",
 		label: "Conta corrente",
-		value: "conta corrente",
-		type: "checking",
-		icon: <Building />,
+		icon: <Building2 size={18} />,
 	},
 	{
-		label: "Conta Poupança",
-		value: "conta Poupança",
-		type: "savings",
-		icon: <PiggyBank />,
+		value: "savings",
+		label: "Poupança",
+		icon: <PiggyBank size={18} />,
 	},
 	{
+		value: "wallet",
 		label: "Carteira",
-		value: "carteira",
-		type: "wallet",
-		icon: <Wallet />,
-	},
-	{
-		label: "Investimentos",
-		value: "investimentos",
-		type: "investments",
-		icon: <TrendingUp />,
+		icon: <Wallet size={18} />,
 	},
 ];

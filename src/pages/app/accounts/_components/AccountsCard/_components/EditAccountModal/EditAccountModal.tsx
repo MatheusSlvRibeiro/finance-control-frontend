@@ -1,17 +1,18 @@
 import { toast } from "react-toastify";
 import styles from "./EditAccountModal.module.scss";
 import { useEffect, useState } from "react";
-import { Select, SelectOption } from "@components/ui/select/Select";
-import { Building2, PiggyBank, Wallet } from "lucide-react";
+import { Select } from "@components/ui/select/Select";
 import { Input } from "@components/ui/inputs/baseInput/input";
 import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
 import { FormModal } from "@components/ui/modal/formModal/FormModal";
+import { accountTypes } from "src/constants/accountTypes.constants";
+import type { AccountType } from "@appTypes/account";
 
 type EditAccountsModalProps = {
 	closeModal: () => void;
 	accountName: string | undefined;
 	openingBalance: number;
-	type: string | undefined;
+	type: AccountType | undefined;
 };
 
 export function EditAccountsModal({
@@ -30,22 +31,12 @@ export function EditAccountsModal({
 		}) && closeModal();
 	};
 
-	const options: SelectOption[] = [
-		{
-			value: "checking",
-			label: "Conta corrente",
-			icon: <Building2 size={18} />,
-		},
-		{ value: "savings", label: "Poupança", icon: <PiggyBank size={18} /> },
-		{ value: "wallet", label: "Carteira", icon: <Wallet size={18} /> },
-	];
+	const options = accountTypes;
 
 	useEffect(() => {
 		setName(accountName ?? "");
 		setOpeningBalanceInCents(Math.round((openingBalance ?? 0) * 100));
-
-		const mappedType = options.find((o) => o.label === type)?.value ?? "";
-		setAccountType(mappedType);
+		setAccountType(type ?? "");
 	}, [accountName, openingBalance, type]);
 
 	return (
@@ -82,7 +73,7 @@ export function EditAccountsModal({
 						options={options}
 						value={accountType}
 						onChange={setAccountType}
-						placeholder={`${type}`}
+						placeholder="Selecione o tipo de conta"
 					/>
 				</form>
 			</FormModal>
