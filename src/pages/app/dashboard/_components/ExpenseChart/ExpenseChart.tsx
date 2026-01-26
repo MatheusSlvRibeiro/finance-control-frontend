@@ -9,19 +9,90 @@ import {
 	YAxis,
 } from "recharts";
 import styles from "./ExpenseChart.module.scss";
+import { useTransactions } from "@hooks/useTransactions";
+import { useMemo } from "react";
+import Button from "@components/ui/button/button";
+import { formatCurrency } from "@utils/formatCurrency";
 
 export function ExpenseChart() {
-	const evolutionData = [
-		{ month: "Jan", receitas: 4500, despesas: 3200 },
-		{ month: "Fev", receitas: 5200, despesas: 3800 },
-		{ month: "Mar", receitas: 4800, despesas: 4100 },
-		{ month: "Abr", receitas: 6100, despesas: 3500 },
-		{ month: "Mai", receitas: 5500, despesas: 4200 },
-		{ month: "Jun", receitas: 7200, despesas: 3900 },
-	];
+	const { data: transactions, loading, error, reload } = useTransactions();
+
+	type ChartPoint = {
+		month: string;
+		receitas: number;
+		despesas: number;
+	};
+
+	const evolutionData: ChartPoint[] = useMemo(() => {
+		const MONTH_LABELS = [
+			"Jan",
+			"Fev",
+			"Mar",
+			"Abr",
+			"Mai",
+			"Jun",
+			"Jul",
+			"Ago",
+			"Set",
+			"Out",
+			"Nov",
+			"Dez",
+		] as const;
+
+		const now = new Date();
+		const points: Array<ChartPoint & { key: string }> = [];
+		const pointByKey = new Map<string, ChartPoint & { key: string }>();
+
+		for (let offset = 5; offset >= 0; offset--) {
+			const d = new Date(now.getFullYear(), now.getMonth() - offset, 1);
+			const key = `${d.getFullYear()}-${d.getMonth()}`;
+			const point: ChartPoint & { key: string } = {
+				key,
+				month: MONTH_LABELS[d.getMonth()] ?? "",
+				receitas: 0,
+				despesas: 0,
+			};
+			points.push(point);
+			pointByKey.set(key, point);
+		}
+
+		transactions.forEach((t) => {
+			const value = Number.isFinite(t.value) ? t.value : 0;
+			const date = new Date(`${t.date}T00:00:00`);
+			if (!Number.isFinite(date.getTime())) return;
+
+			const key = `${date.getFullYear()}-${date.getMonth()}`;
+			const point = pointByKey.get(key);
+			if (!point) return;
+
+			if (t.type === "income") point.receitas += value;
+			else point.despesas += value;
+		});
+
+		return points.map(({ key: _key, ...rest }) => rest);
+	}, [transactions]);
 
 	const isMobile = useMediaQuery({ maxWidth: 425 });
 	const charHeight = isMobile ? 200 : 300;
+
+	if (loading) {
+		return (
+			<div className={styles.dashboard__lineChart}>
+				Carregando gráfico...
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className={styles.dashboard__lineChart}>
+				<p>Falha ao carregar: {error.message}</p>
+				<Button variant="default" size="md" onClick={reload}>
+					Tentar novamente
+				</Button>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.dashboard__lineChart}>
@@ -31,8 +102,10 @@ export function ExpenseChart() {
 					<LineChart data={evolutionData}>
 						<CartesianGrid />
 						<XAxis dataKey="month" />
-						<YAxis />
-						<Tooltip />
+						<YAxis tickFormatter={(v) => formatCurrency(Number(v) || 0)} />
+						<Tooltip
+							formatter={(v) => formatCurrency(Number(v) || 0)}
+						/>
 						<Line
 							dataKey="receitas"
 							name="Receitas"

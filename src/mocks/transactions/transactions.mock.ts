@@ -4,6 +4,11 @@ const today = new Date();
 const yesterday = new Date();
 yesterday.setDate(today.getDate() - 1);
 
+const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 15);
+const twoMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 20);
+const twoMonthsAgo2 = new Date(today.getFullYear(), today.getMonth() - 2, 8);
+const lastMonth2 = new Date(today.getFullYear(), today.getMonth() - 1, 3);
+
 const toISODate = (d: Date) => d.toISOString().slice(0, 10);
 
 export const transactionsMock: Transaction[] = [
@@ -76,5 +81,75 @@ export const transactionsMock: Transaction[] = [
 		account: "inter",
 		value: 16.9,
 		date: toISODate(yesterday),
+	},
+	{
+		id: "8",
+		description: "IPTU",
+		category: "Moradia",
+		categoryColor: "#ef4444",
+		type: "expense",
+		account: "nubank",
+		value: 350,
+		date: toISODate(lastMonth),
+	},
+	{
+		id: "9",
+		description: "Conta de Luz",
+		category: "Moradia",
+		categoryColor: "#ef4444",
+		type: "expense",
+		account: "nubank",
+		value: 210.45,
+		date: toISODate(lastMonth2),
+	},
+	{
+		id: "10",
+		description: "Farmácia",
+		category: "Saúde",
+		categoryColor: "#8b5cf6",
+		type: "expense",
+		account: "inter",
+		value: 74.9,
+		date: toISODate(lastMonth),
+	},
+	{
+		id: "11",
+		description: "Bônus",
+		category: "Trabalho",
+		categoryColor: "#22c55e",
+		type: "income",
+		account: "nubank",
+		value: 800,
+		date: toISODate(lastMonth),
+	},
+	{
+		id: "12",
+		description: "Presente",
+		category: "Lazer",
+		categoryColor: "#f59e0b",
+		type: "expense",
+		account: "inter",
+		value: 120,
+		date: toISODate(twoMonthsAgo),
+	},
+	{
+		id: "13",
+		description: "Uber",
+		category: "Transporte",
+		categoryColor: "#0ea5e9",
+		type: "expense",
+		account: "nubank",
+		value: 46.8,
+		date: toISODate(twoMonthsAgo2),
+	},
+	{
+		id: "14",
+		description: "Supermercado",
+		category: "Alimentação",
+		categoryColor: "#f97316",
+		type: "expense",
+		account: "nubank",
+		value: 389.3,
+		date: toISODate(twoMonthsAgo),
 	},
 ] satisfies Transaction[];
