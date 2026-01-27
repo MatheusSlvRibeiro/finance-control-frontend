@@ -40,7 +40,8 @@ export default function AppHeader({ onMenuClick, sidebarOpen }: HeaderProps) {
 
 	useEffect(() => {
 		return () => {
-			if (logoutTimerRef.current) window.clearTimeout(logoutTimerRef.current);
+			if (logoutTimerRef.current)
+				window.clearTimeout(logoutTimerRef.current);
 		};
 	}, []);
 

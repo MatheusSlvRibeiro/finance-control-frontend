@@ -1,0 +1,75 @@
+.picker {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.pickerLabel {
+	font-weight: $font-medium;
+	color: $dark;
+}
+
+.colorRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.colorSwatch,
+.colorSwatchSelected {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	border: 2px solid $white;
+	box-shadow: 0 0 0 1px $gray-light;
+	cursor: pointer;
+	padding: 0;
+}
+
+.colorSwatchSelected {
+	box-shadow: 0 0 0 2px $dark;
+}
+
+.iconGrid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 0.5rem;
+
+	@media (min-width: $breakpoint-md) {
+		grid-template-columns: repeat(8, 1fr);
+	}
+}
+
+.iconButton,
+.iconButtonSelected {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: $radius-md;
+	background-color: $white;
+	border: 1px solid $gray-light;
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+.iconButton:hover {
+	background-color: $gray-light;
+}
+
+.iconButtonSelected {
+	border-color: $green;
+	box-shadow: 0 0 0 2px color.adjust($green, $lightness: 40%);
+}
+
+.iconButton:focus-visible,
+.iconButtonSelected:focus-visible,
+.colorSwatch:focus-visible,
+.colorSwatchSelected:focus-visible {
+	outline: 2px solid $green;
+	outline-offset: 2px;
+}
+
+.empty {
+	color: $gray-muted;
+	font-size: $font-sm;
+}

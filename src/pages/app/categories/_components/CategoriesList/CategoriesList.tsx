@@ -1,12 +1,18 @@
-import { EllipsisVertical } from "lucide-react";
 import styles from "./CategoriesList.module.scss";
 import { Category } from "@appTypes/category";
+import { Dropdown } from "@components/ui/dropdown/Dropdown";
 
 type CategoriesListProps = {
 	categories: Category[];
+	onEdit: (category: Category) => void;
+	onDelete: (category: Category) => void;
 };
 
-export function CategoriesList({ categories }: CategoriesListProps) {
+export function CategoriesList({
+	categories,
+	onEdit,
+	onDelete,
+}: CategoriesListProps) {
 	if (categories.length === 0) {
 		return (
 			<div className={styles.empty}>Nenhuma categoria encontrada.</div>
@@ -26,11 +32,22 @@ export function CategoriesList({ categories }: CategoriesListProps) {
 						<div className={styles.label}>{category.name}</div>
 					</div>
 
-					<div>
-						<button className={styles.editButton}>
-							<EllipsisVertical />
+					<Dropdown>
+						<button
+							type="button"
+							role="menuitem"
+							onClick={() => onEdit(category)}
+						>
+							Editar
 						</button>
-					</div>
+						<button
+							type="button"
+							role="menuitem"
+							onClick={() => onDelete(category)}
+						>
+							Excluir
+						</button>
+					</Dropdown>
 				</div>
 			))}
 		</div>

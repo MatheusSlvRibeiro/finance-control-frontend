@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type CategoryType = "expense" | "income";
 
 export interface Category {
@@ -5,5 +7,5 @@ export interface Category {
 	name: string;
 	type: CategoryType;
 	color: string;
-	icon: React.ReactNode;
+	icon: ReactNode;
 }
