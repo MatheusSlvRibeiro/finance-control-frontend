@@ -1,18 +1,48 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "@components/ui/button/button";
 import { EyeOff, Eye } from "lucide-react";
 import styles from "./loginForm.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "@context/authContext";
+import { toast } from "react-toastify";
+
+type LoginFormState = {
+	email: string;
+	password: string;
+};
 
 export default function LoginForm() {
+	const [values, setValues] = useState<LoginFormState>({
+		email: "",
+		password: "",
+	});
 	const [showPassword, setShowPassword] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+
 	const navigate = useNavigate();
+	const { login } = useAuth();
+
+	function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+		const { value, name } = event.target;
+
+		setValues((prev) => ({ ...prev, [name]: value }));
+	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setTimeout(() => {
+		setError(null);
+
+		const result = await login(values.email, values.password);
+
+		if (result.success) {
+			toast("Autenticado com sucesso!", {
+				toastId: "login-successfull",
+			});
 			navigate("/dashboard");
-		}, 1500);
+			return;
+		}
+
+		setError(result.message ?? "Não foi possível fazer login");
 	};
 
 	return (
@@ -22,9 +52,13 @@ export default function LoginForm() {
 					<label htmlFor="email">E-mail</label>
 					<input
 						id="email"
+						name="email"
 						type="email"
+						autoComplete="email"
 						placeholder="seu@email.com"
 						required
+						onChange={onChange}
+						value={values.email}
 					/>
 				</div>
 				<div className={styles.login__form_input}>
@@ -32,10 +66,13 @@ export default function LoginForm() {
 					<div className={styles.input__wrapper}>
 						<input
 							id="password"
+							name="password"
 							type={showPassword ? "text" : "password"}
 							placeholder="••••••••"
 							autoComplete="current-password"
 							required
+							onChange={onChange}
+							value={values.password}
 						/>
 						<button
 							className={styles.show__password}
@@ -47,6 +84,8 @@ export default function LoginForm() {
 						</button>
 					</div>
 				</div>
+
+				{error && <p className={styles.error}>{error}</p>}
 			</div>
 			<Button type="submit" variant="register">
 				Entrar

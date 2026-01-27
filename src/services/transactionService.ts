@@ -1,4 +1,4 @@
-import { transactionsMock } from "@mocks/transactions/transactions.mock";
+import { transactionsMock } from "@mocks/transactions.mock";
 import type { Transaction, TransactionType } from "@appTypes/transaction";
 import { CategoryType } from "@appTypes/category";
 

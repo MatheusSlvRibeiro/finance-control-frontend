@@ -1,8 +1,8 @@
 import type { Account, AccountType } from "@appTypes/account";
 import { NumericAccountField } from "@appTypes/numericAccountField";
-import { userAccounts } from "@mocks/accounts/userAccounts.mock";
+import { userAccounts } from "@mocks/userAccounts.mock";
 import type { Transaction } from "@appTypes/transaction";
-import { transactionsMock } from "@mocks/transactions/transactions.mock";
+import { transactionsMock } from "@mocks/transactions.mock";
 
 const sumBy = (accounts: Account[], field: NumericAccountField) =>
 	accounts.reduce((acc, a) => acc + (a[field] ?? 0), 0);

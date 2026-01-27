@@ -72,6 +72,7 @@ export default function AccountsCard() {
 
 									return (
 										<AccountMetrics
+											key={row.id}
 											id={row.id}
 											label={row.label}
 											className={amountClassName}

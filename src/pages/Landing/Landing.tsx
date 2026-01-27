@@ -6,9 +6,9 @@ import Button from "@components/ui/button/button";
 import { BenefitsCard } from "./_components/BenefitsCard/benefitsCard";
 import EmblaCarousel from "./_components/EmblaCarousel/EmblaCarousel";
 import { Header } from "./_components/Header/header";
-import styles from "./Home.module.scss";
+import styles from "./Landing.module.scss";
 
-export default function Home() {
+export default function Landing() {
 	const OPTIONS: EmblaOptionsType = {};
 	const SLIDES = [
 		{
@@ -43,18 +43,16 @@ export default function Home() {
 
 				<div className={styles.heroSectionButtons}>
 					<Link to="/register">
-						<Button 
-							size="lg"
-							variant="register">
+						<Button size="lg" variant="register">
 							Começar agora
 							<MoveRight />
 						</Button>
 					</Link>
 
 					<Link to="/login">
-						<Button 
-							size="md"
-							variant="default">Já tenho conta</Button>
+						<Button size="md" variant="default">
+							Já tenho conta
+						</Button>
 					</Link>
 				</div>
 			</section>
@@ -97,9 +95,7 @@ export default function Home() {
 						dinheiro
 					</p>
 					<Link to="/register">
-						<Button 
-							size="lg"
-							variant="register">
+						<Button size="lg" variant="register">
 							Criar conta gratuita
 							<MoveRight />
 						</Button>
