@@ -1,15 +1,15 @@
 .input {
 	display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    align-items: start;
-    justify-content: space-between;
+	flex-direction: column;
+	gap: 0.3rem;
+	align-items: start;
+	justify-content: space-between;
 
-    label {
-        color: $dark;
-        font-weight: $font-medium;
-        font-size: $font-sm;
-    }
+	label {
+		color: $dark;
+		font-weight: $font-medium;
+		font-size: $font-sm;
+	}
 }
 
 .field {

@@ -1,4 +1,4 @@
-.table__container {
+.latestExpenses {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
@@ -8,18 +8,19 @@
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.container__header {
+
+.latestExpenses__header {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+}
 
-	.header__title {
-		font-weight: $font-medium;
-		color: $dark;
-	}
+.latestExpenses__title {
+	font-weight: $font-medium;
+	color: $dark;
+}
 
-	.header__button {
-		color: $gray-muted;
-	}
+.latestExpenses__button {
+	color: $gray-muted;
 }

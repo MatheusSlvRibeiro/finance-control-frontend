@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import { ReactElement, useState } from "react";
-import { ModalButton } from "@components/ui/modal/_components/modalButton/modalButton";
 import { Select } from "@components/ui/select/Select";
 import { Input } from "@components/ui/inputs/baseInput/input";
 import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
@@ -27,14 +26,14 @@ export function CreateAccountsModal({
 	};
 
 	return (
-		<div className={styles.modal}>
+		<div className={styles.createAccount}>
 			<FormModal
 				title="Nova conta"
 				message="Cadastre as informações da sua conta"
 				closeModal={closeModal}
 				handleSave={handleSave}
 			>
-				<div className={styles.form}>
+				<div className={styles.createAccount__form}>
 					<Input
 						id="name"
 						name="name"

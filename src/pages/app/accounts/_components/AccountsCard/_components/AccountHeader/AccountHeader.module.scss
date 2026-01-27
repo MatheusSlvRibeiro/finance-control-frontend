@@ -1,22 +1,22 @@
-.header {
+.accountHeader {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	gap: 0.6rem;
 
-	.header_icon {
+	.accountHeader__icon {
 		padding: $space-sm;
 		background-color: $gray-light;
 		border-radius: $radius-lg;
 		display: flex;
 	}
 
-	.header_name {
+	.accountHeader__name {
 		font-weight: $font-medium;
 	}
 
-	.header_type {
+	.accountHeader__type {
 		font-weight: $font-regular;
 		color: $secondary-foreground;
 	}

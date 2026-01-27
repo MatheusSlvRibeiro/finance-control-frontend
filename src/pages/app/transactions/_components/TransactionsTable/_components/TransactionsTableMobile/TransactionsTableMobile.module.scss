@@ -1,64 +1,64 @@
-.bodyRow {
+.transactionsTable__bodyRow {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	padding: $space-md $space-xs;
 	border-bottom: 1px solid $gray-light;
+}
 
-	.bodyRowMain {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3rem;
+.transactionsTable__bodyRowMain {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
 
-		.bodyRowAccount {
-			color: $gray-muted;
-			font-size: $font-sm;
-		}
+.transactionsTable__bodyRowAccount {
+	color: $gray-muted;
+	font-size: $font-sm;
+}
 
-		.bodyRowDescription {
-			color: $dark;
-		}
+.transactionsTable__bodyRowDescription {
+	color: $dark;
+}
 
-		.bodyRowCategory {
-			display: inline-flex;
-			align-items: center;
-			gap: $space-xxs;
-			font-size: $font-sm;
-			color: $white;
-			padding: $space-xxs $space-xs;
-			border-radius: $radius-lg;
-		}
+.transactionsTable__bodyRowCategory {
+	display: inline-flex;
+	align-items: center;
+	gap: $space-xxs;
+	font-size: $font-sm;
+	color: $white;
+	padding: $space-xxs $space-xs;
+	border-radius: $radius-lg;
+}
 
-		.bodyRowCategoryIcon {
-			display: inline-flex;
-			align-items: center;
-			line-height: 0;
-		}
+.transactionsTable__bodyRowCategoryIcon {
+	display: inline-flex;
+	align-items: center;
+	line-height: 0;
+}
 
-		.bodyRowCategoryLabel {
-			display: inline-flex;
-			align-items: center;
-		}
-	}
+.transactionsTable__bodyRowCategoryLabel {
+	display: inline-flex;
+	align-items: center;
+}
 
-	.bodyRowMeta {
-		display: flex;
-		flex-direction: row;
-		align-items: start;
-		gap: 0.5rem;
+.transactionsTable__bodyRowMeta {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	gap: 0.5rem;
+}
 
-		.bodyRowDate {
-			color: $gray-muted;
-			text-align: end;
-		}
+.transactionsTable__bodyRowDate {
+	color: $gray-muted;
+	text-align: end;
+}
 
-		.bodyRowButton {
-			display: flex;
-			background-color: transparent;
-			border: none;
-			cursor: pointer;
-			width: 20px;
-			height: 20px;
-		}
-	}
+.transactionsTable__bodyRowButton {
+	display: flex;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
 }

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { TransactionsTableActionsModal } from "../TransactionsTableActionsModal/TransactionsTableActionsModal";
 import { useTransactions } from "@hooks/useTransactions";
 import Button from "@components/ui/button/button";
+import { SkeletonLoader } from "@components/ui/skeletonLoader/skeletonLoader";
 
 export type TransactionsTableModalType = "edit" | "delete" | null;
 
@@ -52,12 +53,16 @@ export function TransactionsTable({ data }: Props) {
 	};
 
 	if (loading) {
-		return <div className={styles.state}>Carregando transações...</div>;
+		return (
+			<div className={styles.transactionsTable}>
+				<SkeletonLoader rows={4} />
+			</div>
+		);
 	}
 
 	if (error) {
 		return (
-			<div className={styles.state}>
+			<div className={styles.transactionsTable}>
 				<p>Falha ao carregar: {error.message}</p>
 				<Button variant="default" size="md" onClick={reload}>
 					Tentar novamente
@@ -67,7 +72,7 @@ export function TransactionsTable({ data }: Props) {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.transactionsTable}>
 			{isMobile ? (
 				<TransactionsTableMobile
 					transactions={data}

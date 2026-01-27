@@ -30,7 +30,7 @@
 	}
 }
 
-.stats_card__container {
+.StatsCard {
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
@@ -52,89 +52,88 @@
 		flex-direction: row;
 	}
 
-	.content_account,
-	.content_incomes,
-	.content_expenses,
-	.content_transfers {
+	.contentAccount,
+	.contentIncomes,
+	.contentExpenses,
+	.contentTransfers {
 		@extend %content-base;
 	}
+}
+
+@media (min-width: $breakpoint-sm) {
+	.contentAccount {
+		background: linear-gradient(
+			to right,
+			lighten($accounts, 10%),
+			darken($accounts, 2%)
+		);
+	}
+	.contentIncomes {
+		background: linear-gradient(
+			to right,
+			lighten($income, 10%),
+			darken($income, 5%)
+		);
+	}
+	.contentExpenses {
+		background: linear-gradient(
+			to right,
+			lighten($expense, 10%),
+			darken($expense, 5%)
+		);
+	}
+	.contentTransfers {
+		background: linear-gradient(
+			to right,
+			lighten($transfers, 10%),
+			darken($transfers, 5%)
+		);
+	}
+}
+
+.statsCard__type {
+	@extend %card-base;
 
 	@media (min-width: $breakpoint-sm) {
-		.content_account {
-			background: linear-gradient(
-				to right,
-				lighten($accounts, 10%),
-				darken($accounts, 2%)
-			);
+		flex-direction: column;
+		gap: 0.2rem;
+		align-items: start;
+
+		.statsCard__amount {
+			order: 0;
 		}
-		.content_incomes {
-			background: linear-gradient(
-				to right,
-				lighten($income, 10%),
-				darken($income, 5%)
-			);
-		}
-		.content_expenses {
-			background: linear-gradient(
-				to right,
-				lighten($expense, 10%),
-				darken($expense, 5%)
-			);
-		}
-		.content_transfers {
-			background: linear-gradient(
-				to right,
-				lighten($transfers, 10%),
-				darken($transfers, 5%)
-			);
+		.statsCard__label {
+			order: 1;
 		}
 	}
+}
 
-	.stats_card__type {
-		@extend %card-base;
+.statsCard__label {
+	flex: 1;
+	text-align: left;
+}
 
-		@media (min-width: $breakpoint-sm) {
-			flex-direction: column;
-			gap: 0.2rem;
-			align-items: start;
+.statsCard__amount {
+	flex: 1;
+	text-align: right;
+}
 
-			// No tablet, mostrar o valor antes do label.
-			.stats_card_amount {
-				order: 0;
-			}
-			.stats_card_label {
-				order: 1;
-			}
-		}
-	}
+.icon_accounts,
+.icon_incomes,
+.icon_expenses,
+.icon_transfers {
+	@extend %icon-base;
+}
 
-	.stats_card_label {
-		flex: 1;
-		text-align: left;
-	}
-
-	.stats_card_amount {
-		flex: 1;
-		text-align: right;
-	}
-
-	.icon_accounts,
-	.icon_incomes,
-	.icon_expenses,
-	.icon_transfers {
-		@extend %icon-base;
-	}
-
-	.icon_accounts {
-		background-color: $accounts;
-	}
-	.icon_incomes {
-		background-color: $income;
-	}
-	.icon_expenses {
-		background-color: $expense;
-	}
-	.icon_transfers {
-		background-color: $transfers;
-	}
+.icon_accounts {
+	background-color: $accounts;
+}
+.icon_incomes {
+	background-color: $income;
+}
+.icon_expenses {
+	background-color: $expense;
+}
+.icon_transfers {
+	background-color: $transfers;
 }

@@ -1,11 +1,11 @@
-.dashboard__container {
+.dashboard {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
 	justify-content: space-between;
 }
 
-.dashboard_charts__container {
+.dashboard__charts {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
@@ -14,11 +14,4 @@
 	@media (min-width: $breakpoint-lg) {
 		flex-direction: row;
 	}
-}
-
-.piechart {
-	width: 100%;
-	height: 300px;
-	min-width: 200px;
-	min-height: 200px;
 }

@@ -24,22 +24,24 @@ export default function Login() {
 	];
 
 	return (
-		<div className={styles.login__container}>
-			<section className={styles.login__section}>
-				<div className={styles.login__logo}>
+		<div className={styles.loginPage__container}>
+			<section className={styles.loginPage__section}>
+				<div className={styles.loginPage__logo}>
 					<Logo />
 				</div>
 
-				<div className={styles.login__header}>
-					<h1 className={styles.header__title}>Bem-vindo de volta</h1>
-					<p className={styles.header__subtitle}>
+				<div className={styles.loginPage__header}>
+					<h1 className={styles.loginPage__headerTitle}>
+						Bem-vindo de volta
+					</h1>
+					<p className={styles.loginPage__headerSubtitle}>
 						Entre na sua conta para continuar
 					</p>
 				</div>
 
 				<LoginForm />
 
-				<p className={styles.login__btn_register}>
+				<p className={styles.loginPage__btnRegister}>
 					Não tem uma conta?{" "}
 					<Link to="/register">
 						<span>Criar conta</span>
@@ -47,28 +49,28 @@ export default function Login() {
 				</p>
 			</section>
 
-			<section className={styles.decorative__section}>
-				<div className={styles.decorative__content}>
-					<h2 className={styles.decorative__title}>
+			<section className={styles.loginPage__decorativeSection}>
+				<div className={styles.loginPage__decorativeContent}>
+					<h2 className={styles.loginPage__decorativeTitle}>
 						Controle total das suas finanças
 						<span> em um único lugar</span>
 					</h2>
 
-					<p className={styles.decorative__subtitle}>
+					<p className={styles.loginPage__decorativeSubtitle}>
 						Acompanhe receitas, despesas e investimentos em um só
 						lugar. Tome decisões financeiras mais inteligentes.
 					</p>
 
-					<div className={styles.decorative__card_grid}>
+					<div className={styles.loginPage__decorativeCardGrid}>
 						{cards.map((item) => (
 							<div
 								key={item.title}
-								className={styles.decorative__card}
+								className={styles.loginPage__decorativeCard}
 							>
-								<span className={styles.card__title}>
+								<span className={styles.loginPage__cardTitle}>
 									{item.title}
 								</span>
-								<p className={styles.card__value}>
+								<p className={styles.loginPage__cardValue}>
 									{item.value}
 								</p>
 							</div>

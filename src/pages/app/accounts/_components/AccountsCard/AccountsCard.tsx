@@ -46,7 +46,7 @@ export default function AccountsCard() {
 
 	return (
 		<>
-			<div className={styles.accountsCard__grid}>
+			<div className={styles.accountsGrid}>
 				{accounts.map((item) => {
 					const accountType =
 						accountTypesMap[item.type] || accountTypes[0];
@@ -100,14 +100,14 @@ export default function AccountsCard() {
 											>
 												<div
 													className={
-														styles.accountsCard__currentBalance_label
+														styles.accountsCard__currentBalanceLabel
 													}
 												>
 													{currentBalanceRow.label}
 												</div>
 												<div
 													className={
-														styles.accountsCard__currentBalance_value +
+														styles.accountsCard__currentBalanceValue +
 														(currentBalanceClassName
 															? ` ${currentBalanceClassName}`
 															: "")

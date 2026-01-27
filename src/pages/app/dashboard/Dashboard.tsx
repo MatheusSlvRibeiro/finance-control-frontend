@@ -7,7 +7,7 @@ import styles from "./Dashboard.module.scss";
 
 export default function Dashboard() {
 	return (
-		<div className={styles.dashboard__container}>
+		<div className={styles.dashboard}>
 			<PageHeader
 				title="Dashboard"
 				subtitle="Visão geral das suas finanças"
@@ -15,7 +15,7 @@ export default function Dashboard() {
 
 			<StatsCard />
 
-			<section className={styles.dashboard_charts__container}>
+			<section className={styles.dashboard__charts}>
 				<ExpenseChart />
 
 				<CategoryChart />

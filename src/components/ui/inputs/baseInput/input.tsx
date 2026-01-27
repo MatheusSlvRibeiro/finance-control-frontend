@@ -7,7 +7,6 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export function Input({ label, id, prefix, className, ...rest }: InputProps) {
-	
 	return (
 		<div className={styles.input}>
 			{label && id && <label htmlFor={id}>{label}</label>}

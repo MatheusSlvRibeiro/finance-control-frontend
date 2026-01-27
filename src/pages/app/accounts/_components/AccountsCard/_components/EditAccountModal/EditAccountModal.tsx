@@ -40,14 +40,14 @@ export function EditAccountsModal({
 	}, [accountName, openingBalance, type]);
 
 	return (
-		<div className={styles.modal_edit}>
+		<div className={styles.editAccountModal}>
 			<FormModal
 				title="Editar conta"
 				message="Atualize as informações da sua conta"
 				closeModal={closeModal}
 				handleSave={handleSave}
 			>
-				<form className={styles.form}>
+				<form className={styles.editAccountModal__form}>
 					<Input
 						id="name"
 						name="name"

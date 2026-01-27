@@ -21,23 +21,35 @@ export function TransactionsTableDesktop({
 	const { getAccountName } = useAccountLookup();
 
 	return (
-		<table className={styles.table}>
-			<thead className={styles.head}>
+		<table className={styles.transactionsTableDesktop__table}>
+			<thead className={styles.transactionsTableDesktop__head}>
 				<tr>
-					<th className={styles.headCell}>Descrição</th>
-					<th className={styles.headCell}>Categoria</th>
-					<th className={styles.headCell}>Conta</th>
-					<th className={styles.headCell}>Data</th>
-					<th className={`${styles.headCell} ${styles.headCellEnd}`}>
+					<th className={styles.transactionsTableDesktop__headCell}>
+						Descrição
+					</th>
+					<th className={styles.transactionsTableDesktop__headCell}>
+						Categoria
+					</th>
+					<th className={styles.transactionsTableDesktop__headCell}>
+						Conta
+					</th>
+					<th className={styles.transactionsTableDesktop__headCell}>
+						Data
+					</th>
+					<th
+						className={`${styles.transactionsTableDesktop__headCell} ${styles.transactionsTableDesktop__headCellEnd}`}
+					>
 						Valor
 					</th>
-					<th className={`${styles.headCell} ${styles.headCellEnd}`}>
+					<th
+						className={`${styles.transactionsTableDesktop__headCell} ${styles.transactionsTableDesktop__headCellEnd}`}
+					>
 						Ações
 					</th>
 				</tr>
 			</thead>
 
-			<tbody className={styles.body}>
+			<tbody className={styles.transactionsTableDesktop__body}>
 				{transactions.map((item) => {
 					const category = getCategory(item.category);
 					const categoryLabel = category?.name ?? item.category;
@@ -46,30 +58,66 @@ export function TransactionsTableDesktop({
 
 					return (
 						<tr key={item.id}>
-							<td className={styles.cell}>{item.description}</td>
-							<td className={styles.cell}>
+							<td
+								className={
+									styles.transactionsTableDesktop__cell
+								}
+							>
+								{item.description}
+							</td>
+							<td
+								className={
+									styles.transactionsTableDesktop__cell
+								}
+							>
 								<div
-									className={styles.categoryPill}
+									className={
+										styles.transactionsTableDesktop__categoryPill
+									}
 									style={{ backgroundColor: categoryBg }}
 								>
 									{category?.icon ? (
-										<span className={styles.categoryIcon}>
+										<span
+											className={
+												styles.transactionsTableDesktop__categoryIcon
+											}
+										>
 											{category.icon}
 										</span>
 									) : null}
-									<span className={styles.categoryLabel}>
+									<span
+										className={
+											styles.transactionsTableDesktop__categoryLabel
+										}
+									>
 										{categoryLabel}
 									</span>
 								</div>
 							</td>
-							<td className={styles.cell}>{accountLabel}</td>
-							<td className={styles.cell}>
+							<td
+								className={
+									styles.transactionsTableDesktop__cell
+								}
+							>
+								{accountLabel}
+							</td>
+							<td
+								className={
+									styles.transactionsTableDesktop__cell
+								}
+							>
 								{formatDate(item.date)}
 							</td>
-							<td className={`${styles.cell} ${styles.cellEnd}`}>
+							<td
+								className={`${styles.transactionsTableDesktop__cell} ${styles.transactionsTableDesktop__cellEnd}`}
+							>
 								{formatCurrency(item.value)}
 							</td>
-							<td className={styles.cellActions}>
+							<td
+								className={
+									styles.transactionsTableDesktop__cellActions
+								}
+							>
 								<Dropdown>
 									<button
 										type="button"

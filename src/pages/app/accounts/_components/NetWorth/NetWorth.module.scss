@@ -7,12 +7,12 @@
 	flex-direction: column;
 	gap: 0.5rem;
 
-	.netWorth_label {
+	.netWorth__label {
 		font-weight: $font-regular;
 		font-size: $font-lg;
 	}
 
-	.netWorth_value {
+	.netWorth__value {
 		font-size: $font-3xl;
 		font-weight: $font-bold;
 	}

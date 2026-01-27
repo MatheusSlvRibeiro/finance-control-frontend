@@ -1,4 +1,4 @@
-.login__container {
+.loginPage__container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -11,7 +11,7 @@
 	}
 }
 
-.login__section {
+.loginPage__section {
 	background-color: $background;
 	padding: $space-2xl;
 	display: flex;
@@ -28,28 +28,28 @@
 	}
 }
 
-.login__logo {
+.loginPage__logo {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.login__header {
+.loginPage__header {
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
 }
 
-.header__title {
+.loginPage__headerTitle {
 	color: $dark;
 }
 
-.header__subtitle {
+.loginPage__headerSubtitle {
 	color: $gray-muted;
 }
 
-.login__btn_register {
+.loginPage__btnRegister {
 	text-align: center;
 	font-weight: $font-medium;
 	color: $gray-muted;
@@ -60,7 +60,7 @@
 	}
 }
 
-.decorative__section {
+.loginPage__decorativeSection {
 	display: none;
 
 	@media (min-width: $breakpoint-lg) {
@@ -74,14 +74,14 @@
 		gap: 2rem;
 		background: linear-gradient(to left, $primary, darken($accent, 5%));
 
-		.decorative__content {
+		.loginPage__decorativeContent {
 			padding: 0 $space-2xl;
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
 		}
 
-		.decorative__title {
+		.loginPage__decorativeTitle {
 			font-size: $font-3xl;
 
 			span {
@@ -89,25 +89,25 @@
 			}
 		}
 
-		.decorative__subtitle {
+		.loginPage__decorativeSubtitle {
 			font-size: $font-lg;
 			font-weight: $font-regular;
 		}
 
-		.decorative__title,
-		.decorative__subtitle,
-		.card__title,
-		.card__value {
+		.loginPage__decorativeTitle,
+		.loginPage__decorativeSubtitle,
+		.loginPage__cardTitle,
+		.loginPage__cardValue {
 			color: $white;
 		}
 
-		.decorative__card_grid {
+		.loginPage__decorativeCardGrid {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			gap: 1rem;
 		}
 
-		.decorative__card {
+		.loginPage__decorativeCard {
 			padding: $space-lg;
 			background: rgba(255, 255, 255, 0.2);
 			backdrop-filter: blur(8px);
@@ -117,12 +117,12 @@
 			text-align: start;
 		}
 
-		.card__title {
+		.loginPage__cardTitle {
 			font-size: $font-2xl;
 			font-weight: $font-bold;
 		}
 
-		.card__value {
+		.loginPage__cardValue {
 			font-size: $font-sm;
 		}
 	}

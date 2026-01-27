@@ -46,9 +46,9 @@ export default function LoginForm() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className={styles.login__form}>
-			<div className={styles.login__form_box}>
-				<div className={styles.login__form_input}>
+		<form onSubmit={handleSubmit} className={styles.loginForm__form}>
+			<div className={styles.loginForm__box}>
+				<div className={styles.loginForm__input}>
 					<label htmlFor="email">E-mail</label>
 					<input
 						id="email"
@@ -61,9 +61,9 @@ export default function LoginForm() {
 						value={values.email}
 					/>
 				</div>
-				<div className={styles.login__form_input}>
+				<div className={styles.loginForm__input}>
 					<label htmlFor="password">Senha</label>
-					<div className={styles.input__wrapper}>
+					<div className={styles.loginForm__inputWrapper}>
 						<input
 							id="password"
 							name="password"

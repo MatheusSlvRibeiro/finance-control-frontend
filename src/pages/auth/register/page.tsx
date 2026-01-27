@@ -13,51 +13,51 @@ export default function Register() {
 	];
 
 	return (
-		<div className={styles.register__container}>
-			<section className={styles.register__section}>
-				<div className={styles.register__logo}>
+		<div className={styles.registerPage__container}>
+			<section className={styles.registerPage__section}>
+				<div className={styles.registerPage__logo}>
 					<Logo />
 				</div>
 
-				<div className={styles.register__header}>
-					<h1 className={styles.register__header_title}>
+				<div className={styles.registerPage__header}>
+					<h1 className={styles.registerPage__headerTitle}>
 						Criar Conta
 					</h1>
-					<p className={styles.register__header_subtitle}>
+					<p className={styles.registerPage__headerSubtitle}>
 						Preencha os dados abaixo para começar
 					</p>
 				</div>
 
 				<RegisterForm />
 
-				<p className={styles.register__btn}>
+				<p className={styles.registerPage__btn}>
 					Já tem conta?{" "}
 					<Link to="/login">
 						<span>Entrar</span>
 					</Link>
 				</p>
 			</section>
-			<section className={styles.decorative__section}>
-				<div className={styles.decorative__content}>
-					<h2 className={styles.decorative__title}>
+			<section className={styles.registerPage__decorativeSection}>
+				<div className={styles.registerPage__decorativeContent}>
+					<h2 className={styles.registerPage__decorativeTitle}>
 						Comece sua jornada financeira
 					</h2>
 
-					<p className={styles.decorative__subtitle}>
+					<p className={styles.registerPage__decorativeSubtitle}>
 						Crie sua conta gratuita e tenha acesso a todas as
-						ferramentas para organizar sus finanças pessoais.
+						ferramentas para organizar suas finanças pessoais.
 					</p>
 
-					<div className={styles.decorative__benefits}>
+					<div className={styles.registerPage__decorativeBenefits}>
 						{benefits.map((item) => (
 							<div
-								className={styles.decorative__benefits_items}
+								className={
+									styles.registerPage__decorativeBenefitsItem
+								}
 								key={item.text}
 							>
-								<Check className={styles.benefits__check} />
-								<p className={styles.benefits__text}>
-									{item.text}
-								</p>
+								<Check />
+								<p>{item.text}</p>
 							</div>
 						))}
 					</div>

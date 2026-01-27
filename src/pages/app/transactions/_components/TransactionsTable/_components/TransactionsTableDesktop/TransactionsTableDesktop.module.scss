@@ -1,38 +1,38 @@
-.table {
+.transactionsTableDesktop__table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.head {
+.transactionsTableDesktop__head {
 	border-bottom: 1px solid $border;
 }
 
-.body {
+.transactionsTableDesktop__body {
 	tr + tr {
 		border-top: 1px solid $border;
 	}
 }
 
-.headCell {
+.transactionsTableDesktop__headCell {
 	text-align: start;
 	font-weight: $font-regular;
 	color: $secondary-foreground;
 	padding: $space-md $space-xs;
 }
 
-.headCellEnd {
+.transactionsTableDesktop__headCellEnd {
 	text-align: end;
 }
 
-.cell {
+.transactionsTableDesktop__cell {
 	padding: $space-sm;
 }
 
-.cellEnd {
+.transactionsTableDesktop__cellEnd {
 	text-align: end;
 }
 
-.categoryPill {
+.transactionsTableDesktop__categoryPill {
 	display: inline-flex;
 	align-items: center;
 	gap: $space-xxs;
@@ -44,18 +44,18 @@
 	width: fit-content;
 }
 
-.categoryIcon {
+.transactionsTableDesktop__categoryIcon {
 	display: inline-flex;
 	align-items: center;
 	line-height: 0;
 }
 
-.categoryLabel {
+.transactionsTableDesktop__categoryLabel {
 	display: inline-flex;
 	align-items: center;
 }
 
-.cellActions {
+.transactionsTableDesktop__cellActions {
 	padding: $space-sm;
 	vertical-align: middle;
 	display: flex;

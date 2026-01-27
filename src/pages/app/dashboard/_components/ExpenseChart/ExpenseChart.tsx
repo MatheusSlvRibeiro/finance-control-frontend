@@ -12,6 +12,7 @@ import styles from "./ExpenseChart.module.scss";
 import { useTransactions } from "@hooks/useTransactions";
 import { useMemo } from "react";
 import Button from "@components/ui/button/button";
+import { SkeletonLoader } from "@components/ui/skeletonLoader/skeletonLoader";
 import { formatCurrency } from "@utils/formatCurrency";
 
 export function ExpenseChart() {
@@ -77,15 +78,15 @@ export function ExpenseChart() {
 
 	if (loading) {
 		return (
-			<div className={styles.dashboard__lineChart}>
-				Carregando gráfico...
+			<div className={styles.monthExpense}>
+				<SkeletonLoader rows={4} />
 			</div>
 		);
 	}
 
 	if (error) {
 		return (
-			<div className={styles.dashboard__lineChart}>
+			<div className={styles.monthExpense}>
 				<p>Falha ao carregar: {error.message}</p>
 				<Button variant="default" size="md" onClick={reload}>
 					Tentar novamente
@@ -95,14 +96,18 @@ export function ExpenseChart() {
 	}
 
 	return (
-		<div className={styles.dashboard__lineChart}>
-			<h3 className={styles.lineChart_title}>Evolução Financeira</h3>
+		<div className={styles.monthExpense}>
+			<h3 className={styles.monthExpense__title}>Evolução Financeira</h3>
 			<div style={{ width: "100%", height: charHeight }}>
 				<ResponsiveContainer width="100%" height="100%">
 					<LineChart data={evolutionData}>
 						<CartesianGrid />
 						<XAxis dataKey="month" />
-						<YAxis tickFormatter={(v) => formatCurrency(Number(v) || 0)} />
+						<YAxis
+							tickFormatter={(v) =>
+								formatCurrency(Number(v) || 0)
+							}
+						/>
 						<Tooltip
 							formatter={(v) => formatCurrency(Number(v) || 0)}
 						/>

@@ -3,28 +3,39 @@ import { formatCurrency } from "@utils/formatCurrency";
 import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
 import styles from "./statsCard.module.scss";
 import { useAccountsTotals } from "@hooks/useAccountsTotals";
+import { SkeletonLoader } from "@components/ui/skeletonLoader/skeletonLoader";
+import Button from "@components/ui/button/button";
 
 export function StatsCard() {
 	type StatsLabel = "Contas" | "Receitas" | "Despesas" | "Transferências";
 
-	const { balance, incomes, expenses, incomingTransfer } =
-		useAccountsTotals();
+	const isTablet = useMediaQuery({ minWidth: 576 });
+
+	const {
+		balance,
+		incomes,
+		expenses,
+		incomingTransfer,
+		loading,
+		error,
+		reload,
+	} = useAccountsTotals();
 
 	const classMap: Record<StatsLabel, { card: string; icon: string }> = {
 		Contas: {
-			card: styles.content_account,
+			card: styles.contentAccount,
 			icon: styles.icon_accounts,
 		},
 		Receitas: {
-			card: styles.content_incomes,
+			card: styles.contentIncomes,
 			icon: styles.icon_incomes,
 		},
 		Despesas: {
-			card: styles.content_expenses,
+			card: styles.contentExpenses,
 			icon: styles.icon_expenses,
 		},
 		Transferências: {
-			card: styles.content_transfers,
+			card: styles.contentTransfers,
 			icon: styles.icon_transfers,
 		},
 	};
@@ -56,25 +67,63 @@ export function StatsCard() {
 		},
 	];
 
-	const isTablet = useMediaQuery({ minWidth: 576 });
+	if (loading) {
+		return (
+			<div className={styles.StatsCard}>
+				<SkeletonLoader rows={4} />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className={styles.StatsCard}>
+				<p>Falha ao carregar: {error.message}</p>
+				<Button variant="default" size="md" onClick={reload}>
+					Tentar novamente
+				</Button>
+			</div>
+		);
+	}
 
 	return (
-		<section className={styles.stats_card__container}>
-			{!isTablet && (
-				<p className={styles.stats_card__title}>Visão Geral</p>
-			)}
-
-			{stats.map((item) => (
-				<div key={item.label} className={classMap[item.label].card}>
-					<div className={classMap[item.label].icon}>{item.icon}</div>
-					<div className={styles.stats_card__type}>
-						<p className={styles.stats_card_label}>{item.label}</p>
-						<p className={styles.stats_card_amount}>
-							{formatCurrency(item.amount)}
-						</p>
-					</div>
+		<section className={styles.StatsCard}>
+			{balance === undefined &&
+			incomes === undefined &&
+			expenses === undefined &&
+			incomingTransfer === undefined ? (
+				<div className={styles.loading}>
+					<div className={styles.skeletonRow}></div>
+					<div className={styles.skeletonRow}></div>
+					<div className={styles.skeletonRow}></div>
+					<div className={styles.skeletonRow}></div>
 				</div>
-			))}
+			) : (
+				<>
+					{!isTablet && (
+						<p className={styles.StatsCard__title}>Visão Geral</p>
+					)}
+
+					{stats.map((item) => (
+						<div
+							key={item.label}
+							className={classMap[item.label].card}
+						>
+							<div className={classMap[item.label].icon}>
+								{item.icon}
+							</div>
+							<div className={styles.statsCard__type}>
+								<p className={styles.statsCard__label}>
+									{item.label}
+								</p>
+								<p className={styles.statsCard__amount}>
+									{formatCurrency(item.amount)}
+								</p>
+							</div>
+						</div>
+					))}
+				</>
+			)}
 		</section>
 	);
 }

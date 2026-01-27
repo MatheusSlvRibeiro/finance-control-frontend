@@ -16,7 +16,7 @@ export default function AccountsPage() {
 	};
 
 	return (
-		<div className={styles.accountsPage__container}>
+		<div className={styles.accountsPage}>
 			<div className={styles.accountsPage__content}>
 				<PageHeader
 					title="Contas"

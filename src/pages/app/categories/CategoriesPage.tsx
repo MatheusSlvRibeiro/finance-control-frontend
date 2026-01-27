@@ -70,7 +70,7 @@ export default function CategoriesPage() {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.categoriesPage}>
 			<PageHeader
 				title="Categorias"
 				subtitle="Organize suas transações por categorias"

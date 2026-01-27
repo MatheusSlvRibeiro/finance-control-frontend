@@ -31,7 +31,7 @@ export default function TransactionsPage() {
 	};
 
 	return (
-		<div className={styles.transactionsPage__container}>
+		<div className={styles.transactionsPage}>
 			<PageHeader
 				title="Transações"
 				subtitle="Gerencie suas receitas e despesas"

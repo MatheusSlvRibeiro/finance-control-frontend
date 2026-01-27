@@ -1,4 +1,4 @@
-.dashboard__lineChart {
+.monthExpense {
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
@@ -9,12 +9,12 @@
 	z-index: 1;
 	width: 100%;
 
-	.lineChart_title {
-		color: $dark;
-		font-weight: $font-medium;
-	}
-
 	@media (min-width: $breakpoint-lg) {
 		max-width: 80%;
 	}
+}
+
+.monthExpense__title {
+	color: $dark;
+	font-weight: $font-medium;
 }

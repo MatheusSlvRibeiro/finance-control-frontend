@@ -4,6 +4,7 @@ import { useTransactions } from "@hooks/useTransactions";
 import { useMemo } from "react";
 import { Transaction } from "@appTypes/transaction";
 import Button from "@components/ui/button/button";
+import { SkeletonLoader } from "@components/ui/skeletonLoader/skeletonLoader";
 import { TransactionsTable } from "@pages/app/transactions/_components/TransactionsTable/TransactionsTable";
 
 export type LatestExpensesProps = {
@@ -27,12 +28,16 @@ export function LatestExpenses() {
 	}, [expenses]);
 
 	if (loading) {
-		return <div>Carregando últimas transações...</div>;
+		return (
+			<div className={styles.latestExpenses}>
+				<SkeletonLoader rows={4} />
+			</div>
+		);
 	}
 
 	if (error) {
 		return (
-			<div>
+			<div className={styles.latestExpenses}>
 				<p>Falha ao carregar: {error.message}</p>
 				<Button variant="default" size="md" onClick={reload}>
 					Tentar novamente
@@ -42,11 +47,16 @@ export function LatestExpenses() {
 	}
 
 	return (
-		<div className={styles.table__container}>
-			<div className={styles.container__header}>
-				<h3 className={styles.header__title}>Transações Recentes</h3>
+		<div className={styles.latestExpenses}>
+			<div className={styles.latestExpenses__header}>
+				<h3 className={styles.latestExpenses__title}>
+					Transações Recentes
+				</h3>
 
-				<Link className={styles.header__button} to="/transactions">
+				<Link
+					className={styles.latestExpenses__button}
+					to="/transactions"
+				>
 					Ver todas
 				</Link>
 			</div>

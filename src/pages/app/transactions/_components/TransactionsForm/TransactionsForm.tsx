@@ -117,7 +117,7 @@ export function TransactionForm({
 					valueInCents,
 				});
 			}}
-			className={styles.form}
+			className={styles.transactionForm}
 		>
 			<Input
 				id="description"

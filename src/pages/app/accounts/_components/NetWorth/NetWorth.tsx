@@ -7,8 +7,8 @@ export default function NetWorth() {
 
 	return (
 		<div className={styles.netWorth}>
-			<p className={styles.netWorth_label}>Patrimônio Total</p>
-			<p className={styles.netWorth_value}>{formatCurrency(balance)}</p>
+			<p className={styles.netWorth__label}>Patrimônio Total</p>
+			<p className={styles.netWorth__value}>{formatCurrency(balance)}</p>
 		</div>
 	);
 }
