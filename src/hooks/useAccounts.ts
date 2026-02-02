@@ -23,7 +23,7 @@ export function useAccounts() {
 
 	useEffect(() => {
 		let alive = true
-
+		
 		;(async () => {
 			setLoading(true)
 			setError(null)

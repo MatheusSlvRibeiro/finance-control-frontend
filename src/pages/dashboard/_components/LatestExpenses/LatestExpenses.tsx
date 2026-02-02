@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { Transaction } from '@appTypes/transaction'
 import Button from '@components/ui/button/button'
 import { SkeletonLoader } from '@components/ui/skeletonLoader/skeletonLoader'
-import { TransactionsTable } from '@pages/app/transactions/_components/TransactionsTable/TransactionsTable'
+import { TransactionsTable } from '@pages/transactions/_components/TransactionsTable/TransactionsTable'
 
 export type LatestExpensesProps = {
 	data: Transaction[]

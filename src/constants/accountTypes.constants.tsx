@@ -1,20 +1,24 @@
 import { Building2, PiggyBank, Wallet } from 'lucide-react'
-import type { SelectOption } from '@components/ui/select/Select'
 
-export const accountTypes: SelectOption[] = [
-	{
-		value: 'checking',
+export const ACCOUNT_TYPE_OPTIONS = {
+	checking: {
 		label: 'Conta corrente',
-		icon: <Building2 size={18} />,
+		icon: Building2,
 	},
-	{
-		value: 'savings',
+	savings: {
 		label: 'Poupança',
-		icon: <PiggyBank size={18} />,
+		icon: PiggyBank,
 	},
-	{
-		value: 'wallet',
+	wallet: {
 		label: 'Carteira',
-		icon: <Wallet size={18} />,
+		icon: Wallet,
 	},
-]
+} as const
+
+export const ACCOUNT_TYPE_OPTIONS_ARRAY = Object.entries(ACCOUNT_TYPE_OPTIONS).map(
+  ([value, { label, icon: Icon }]) => ({
+    value,
+    label,
+    icon: <Icon />,
+  })
+)

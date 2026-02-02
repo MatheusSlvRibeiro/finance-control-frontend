@@ -1,6 +1,6 @@
 import { formatCurrency } from '@utils/formatCurrency/formatCurrency'
 import { Pie, ResponsiveContainer, PieChart, Tooltip, Cell } from 'recharts'
-import styles from '@pages/app/dashboard/_components/CategoryChart/CategoryChart.module.scss'
+import styles from './CategoryChart.module.scss'
 import { useMemo } from 'react'
 
 import { useCategories } from '@hooks/useCategories'

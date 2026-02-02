@@ -1,5 +1,5 @@
-import type { Transaction, TransactionType } from '@appTypes/transaction'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { Transaction } from '@appTypes/transaction'
+import { useCallback, useEffect, useState } from 'react'
 import { transactionService } from '@services/transactions/transactionService'
 
 export function useTransactions() {

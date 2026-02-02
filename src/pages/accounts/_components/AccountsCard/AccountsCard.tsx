@@ -9,7 +9,7 @@ import { currentBalanceRow, getAmountClassName, metricRows } from './helpers'
 import { AccountHeader } from './_components/AccountHeader/AccountHeader'
 import { AccountMetrics } from './_components/AccountMetrics/AccountMetrics'
 import { useAccounts } from '@hooks/useAccounts'
-import { accountTypes } from 'src/constants/accountTypes.constants'
+import { ACCOUNT_TYPE_OPTIONS_ARRAY } from 'src/constants/accountTypes.constants'
 
 type ModalType = 'edit' | 'delete' | null
 
@@ -38,6 +38,7 @@ export default function AccountsCard() {
 		setIsModalOpen(true)
 	}
 
+	const accountTypes = ACCOUNT_TYPE_OPTIONS_ARRAY
 	const accountTypesMap = Object.fromEntries(accountTypes.map((t) => [t.value, t]))
 
 	return (

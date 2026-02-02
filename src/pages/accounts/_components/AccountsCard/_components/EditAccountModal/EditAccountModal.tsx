@@ -5,7 +5,7 @@ import { Select } from '@components/ui/select/Select'
 import { Input } from '@components/ui/inputs/baseInput/input'
 import { CurrencyInput } from '@components/ui/inputs/currencyInput/CurrencyInput'
 import { FormModal } from '@components/ui/modal/formModal/FormModal'
-import { accountTypes } from 'src/constants/accountTypes.constants'
+import { ACCOUNT_TYPE_OPTIONS_ARRAY } from 'src/constants/accountTypes.constants'
 import type { AccountType } from '@appTypes/account'
 
 type EditAccountsModalProps = {
@@ -30,8 +30,6 @@ export function EditAccountsModal({
 			toastId: 'success-edit',
 		}) && closeModal()
 	}
-
-	const options = accountTypes
 
 	useEffect(() => {
 		setName(accountName ?? '')
@@ -70,7 +68,7 @@ export function EditAccountsModal({
 						id="accountType"
 						name="accountType"
 						label="Tipo de conta"
-						options={options}
+						options={ACCOUNT_TYPE_OPTIONS_ARRAY}
 						value={accountType}
 						onChange={setAccountType}
 						placeholder="Selecione o tipo de conta"

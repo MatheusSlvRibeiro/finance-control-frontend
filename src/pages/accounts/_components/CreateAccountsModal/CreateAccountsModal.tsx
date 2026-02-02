@@ -5,14 +5,12 @@ import { Input } from '@components/ui/inputs/baseInput/input'
 import { CurrencyInput } from '@components/ui/inputs/currencyInput/CurrencyInput'
 import styles from './CreateAccounts.module.scss'
 import { FormModal } from '@components/ui/modal/formModal/FormModal'
-import { accountTypes } from 'src/constants/accountTypes.constants'
+import { ACCOUNT_TYPE_OPTIONS_ARRAY } from 'src/constants/accountTypes.constants'
 
 export function CreateAccountsModal({ closeModal }: { closeModal: () => void }): ReactElement {
 	const [name, setName] = useState('')
 	const [openingBalanceInCents, setOpeningBalanceInCents] = useState(0)
 	const [accountType, setAccountType] = useState('')
-
-	const options = accountTypes
 
 	const handleSave = () => {
 		toast('Conta criada com sucesso!', {
@@ -51,7 +49,7 @@ export function CreateAccountsModal({ closeModal }: { closeModal: () => void }):
 						id="accountType"
 						name="accountType"
 						label="Tipo de conta"
-						options={options}
+						options={ACCOUNT_TYPE_OPTIONS_ARRAY}
 						value={accountType}
 						onChange={setAccountType}
 						placeholder="Selecione o tipo de conta"
