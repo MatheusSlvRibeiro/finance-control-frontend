@@ -15,7 +15,6 @@ export default defineConfig([
 			'@typescript-eslint': tsPlugin,
 		},
 		rules: {
-			// Keep it minimal: TypeScript does most of the heavy lifting.
 			'no-undef': 'off',
 			'no-unused-vars': 'off',
 			'@typescript-eslint/no-unused-vars': [
