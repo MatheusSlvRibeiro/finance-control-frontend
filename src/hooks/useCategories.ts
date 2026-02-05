@@ -13,7 +13,7 @@ export function useCategories() {
 
 		try {
 			const list = await categoryService.getAll()
-			setData(list)
+			setData(Array.isArray(list) ? list : [])
 		} catch (e) {
 			setError(e instanceof Error ? e : new Error('Erro ao carregar categorias'))
 		} finally {
@@ -30,7 +30,7 @@ export function useCategories() {
 
 			try {
 				const list = await categoryService.getAll()
-				if (alive) setData(list)
+				if (alive) setData(Array.isArray(list) ? list : [])
 			} catch (e) {
 				if (alive)
 					setError(e instanceof Error ? e : new Error('Erro ao carregar categorias'))

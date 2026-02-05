@@ -14,7 +14,7 @@ import { ACCOUNT_TYPE_OPTIONS_ARRAY } from 'src/constants/accountTypes.constants
 type ModalType = 'edit' | 'delete' | null
 
 export default function AccountsCard() {
-	const { data: accounts } = useAccounts()
+	const { data } = useAccounts()
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [modalType, setModalType] = useState<ModalType>(null)
@@ -44,7 +44,7 @@ export default function AccountsCard() {
 	return (
 		<>
 			<div className={styles.accountsGrid}>
-				{accounts.map((item) => {
+				{data.map((item) => {
 					const accountType = accountTypesMap[item.type] || accountTypes[0]
 
 					return (

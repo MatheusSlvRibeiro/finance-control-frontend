@@ -16,7 +16,7 @@ import { SkeletonLoader } from '@components/ui/skeletonLoader/skeletonLoader'
 import { formatCurrency } from '@utils/formatCurrency/formatCurrency'
 
 export function ExpenseChart() {
-	const { data: transactions, loading, error, reload } = useTransactions()
+	const { data: transactions = [], loading, error, reload } = useTransactions()
 
 	type ChartPoint = {
 		month: string

@@ -1,9 +1,7 @@
 import { useContext, createContext } from 'react'
-import type { User } from '@appTypes/user'
 import type { LoginResult } from '@services/auth/authService'
 
 export type AuthContextType = {
-	user: User | null
 	accessToken: string | null
 	isAuthenticated: boolean
 	login: (email: string, password: string) => Promise<LoginResult>

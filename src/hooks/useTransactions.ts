@@ -13,7 +13,7 @@ export function useTransactions() {
 
 		try {
 			const list = await transactionService.getAll()
-			setData(list)
+			setData(Array.isArray(list) ? list : [])
 		} catch (e) {
 			setError(e instanceof Error ? e : new Error('Erro ao carregar transações'))
 		} finally {
@@ -30,7 +30,7 @@ export function useTransactions() {
 
 			try {
 				const list = await transactionService.getAll()
-				if (alive) setData(list)
+				if (alive) setData(Array.isArray(list) ? list : [])
 			} catch (e) {
 				if (alive)
 					setError(e instanceof Error ? e : new Error('Erro ao carregar transações'))
