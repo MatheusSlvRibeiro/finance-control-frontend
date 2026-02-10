@@ -1,12 +1,14 @@
-import styles from './modalButton.module.scss'
+import styles from './modalButton.module.scss';
 
 type modalButtonProps = {
-	variant?: string
-	text: string
-	onClick: () => void
-}
+	variant?: string;
+	text: string;
+	onClick?: () => void;
+	form?: string;
+	type?: 'button' | 'submit';
+};
 
-export function ModalButton({ variant, text, onClick }: modalButtonProps) {
+export function ModalButton({ variant, text, onClick, form, type }: modalButtonProps) {
 	const varianClass =
 		variant === 'delete'
 			? styles.delete
@@ -16,11 +18,11 @@ export function ModalButton({ variant, text, onClick }: modalButtonProps) {
 					? styles.cancel_success
 					: variant === 'cancel-delete'
 						? styles.cancel_delete
-						: styles.default
+						: styles.default;
 
 	return (
-		<button type="button" onClick={onClick} className={varianClass}>
+		<button type={type ?? 'button'} onClick={onClick} className={varianClass} form={form}>
 			{text}
 		</button>
-	)
+	);
 }

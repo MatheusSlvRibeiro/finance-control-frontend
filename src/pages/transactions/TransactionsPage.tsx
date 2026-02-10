@@ -1,34 +1,86 @@
-import { PageHeader } from '@components/layout/PageHeader/PageHeader'
-import Button from '@components/ui/button/button'
-import { Plus } from 'lucide-react'
-import styles from './TransactionsPage.module.scss'
-import { TransactionsTable } from './_components/TransactionsTable/TransactionsTable'
-import { BaseModal } from '@components/ui/modal/baseModal/BaseModal'
-import { TransactionForm } from './_components/TransactionsForm/TransactionsForm'
-import { FormModal } from '@components/ui/modal/formModal/FormModal'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
-import { useTransactions } from '@hooks/useTransactions'
+import { PageHeader } from '@components/layout/PageHeader/PageHeader';
+import Button from '@components/ui/button/button';
+import { Plus } from 'lucide-react';
+import styles from './TransactionsPage.module.scss';
+import { TransactionsTable } from './_components/TransactionsTable/TransactionsTable';
+import { BaseModal } from '@components/ui/modal/baseModal/BaseModal';
+import { TransactionForm } from './_components/TransactionsForm/TransactionsForm';
+import { FormModal } from '@components/ui/modal/formModal/FormModal';
+import { useId, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useTransactions } from '@hooks/useTransactions';
+import { transactionService } from '@services/transactions/transactionService';
 
 export default function TransactionsPage() {
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const { data } = useTransactions()
+	const { data, reload } = useTransactions();
+	const formId = useId();
 
 	const openModal = () => {
-		setIsModalOpen(true)
-	}
+		setIsModalOpen(true);
+	};
 
 	const closeModal = () => {
-		setIsModalOpen(false)
-	}
+		setIsModalOpen(false);
+	};
 
-	const handleSubmit = () => {
-		setIsModalOpen(false)
-		toast('Transação cadastrada com sucesso!', {
-			toastId: 'transaction-add-success',
-		})
-	}
+	const handleSubmit = async (values: {
+		description: string;
+		type: 'income' | 'expense' | '';
+		category: string;
+		account: string;
+		date: string;
+		valueInCents: number;
+	}) => {
+		console.log('Form submitted with values:', values);
+
+		if (!values.type) {
+			toast('Selecione um tipo de transação!', { toastId: 'type-error' });
+			return;
+		}
+
+		if (!values.description) {
+			toast('Descrição é obrigatória!', { toastId: 'description-error' });
+			return;
+		}
+
+		if (!values.category) {
+			toast('Selecione uma categoria!', { toastId: 'category-error' });
+			return;
+		}
+
+		if (!values.account) {
+			toast('Selecione uma conta!', { toastId: 'account-error' });
+			return;
+		}
+
+		if (!values.valueInCents || values.valueInCents <= 0) {
+			toast('Insira um valor válido!', { toastId: 'value-error' });
+			return;
+		}
+
+		try {
+			await transactionService.create({
+				description: values.description,
+				type: values.type,
+				category: values.category,
+				account: values.account,
+				date: values.date || undefined,
+				value: values.valueInCents / 100,
+			});
+			toast('Transação cadastrada com sucesso!', {
+				toastId: 'transaction-add-success',
+			});
+			await reload();
+			setIsModalOpen(false);
+		} catch (error) {
+			console.error('Erro ao criar transação:', error);
+			toast('Erro ao criar transação. Tente novamente!', {
+				toastId: 'transaction-error',
+			});
+		}
+	};
 
 	return (
 		<div className={styles.transactionsPage}>
@@ -46,11 +98,12 @@ export default function TransactionsPage() {
 					title="Nova transação"
 					message="Cadastre as informações da transação"
 					closeModal={closeModal}
-					handleSave={handleSubmit}
+					handleSave={() => undefined}
+					formId={formId}
 				>
-					<TransactionForm />
+					<TransactionForm formId={formId} onSubmit={handleSubmit} />
 				</FormModal>
 			</BaseModal>
 		</div>
-	)
+	);
 }

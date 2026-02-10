@@ -1,29 +1,62 @@
-import { Transaction } from '@appTypes/transaction'
-import { BaseModal } from '@components/ui/modal/baseModal/BaseModal'
-import { FormModal } from '@components/ui/modal/formModal/FormModal'
-import { TransactionForm } from '../TransactionsForm/TransactionsForm'
-import { DeleteModal } from '@components/ui/modal/deleteModal/DeleteModal'
-import { TransactionsTableModalType } from '../TransactionsTable/TransactionsTable'
+import { Transaction } from '@appTypes/transaction';
+import { BaseModal } from '@components/ui/modal/baseModal/BaseModal';
+import { FormModal } from '@components/ui/modal/formModal/FormModal';
+import { TransactionForm } from '../TransactionsForm/TransactionsForm';
+import { DeleteModal } from '@components/ui/modal/deleteModal/DeleteModal';
+import { TransactionsTableModalType } from '../TransactionsTable/TransactionsTable';
+import { useId } from 'react';
+import { transactionService } from '@services/transactions/transactionService';
 
 type Props = {
-	isOpen: boolean
-	modalType: TransactionsTableModalType
-	selectedTransaction: Transaction | null
-	onClose: () => void
-	onSave: () => void
-	editTitle?: string
-	editMessage?: string
-}
+	isOpen: boolean;
+	modalType: TransactionsTableModalType;
+	selectedTransaction: Transaction | null;
+	onClose: () => void;
+	onUpdate: () => void;
+	onDelete: () => void;
+	editTitle?: string;
+	editMessage?: string;
+};
 
 export function TransactionsTableActionsModal({
 	isOpen,
 	modalType,
 	selectedTransaction,
 	onClose,
-	onSave,
+	onUpdate,
+	onDelete,
 	editTitle,
 	editMessage,
 }: Props) {
+	const formId = useId();
+
+	const handleSubmit = async (values: any) => {
+		if (!selectedTransaction?.uuid) return;
+
+		await transactionService.update(selectedTransaction.uuid, {
+			description: values.description,
+			category: values.category,
+			account: values.account,
+			date: values.date,
+			value: values.valueInCents / 100,
+			type: values.type as 'income' | 'expense',
+		});
+
+		onUpdate();
+	};
+
+	const handleDelete = async () => {
+		if (!selectedTransaction?.uuid) return;
+
+		try {
+			await transactionService.delete(selectedTransaction.uuid);
+			onDelete();
+		} catch (error) {
+			console.error('Erro ao deletar transação:', error);
+			alert('Erro ao deletar transação. Tente novamente.');
+		}
+	};
+
 	return (
 		<BaseModal isOpen={isOpen} onClose={onClose}>
 			{modalType === 'edit' && selectedTransaction && (
@@ -31,9 +64,14 @@ export function TransactionsTableActionsModal({
 					title={editTitle}
 					message={editMessage}
 					closeModal={onClose}
-					handleSave={onSave}
+					handleSave={() => undefined}
+					formId={formId}
 				>
-					<TransactionForm initialValues={selectedTransaction} />
+					<TransactionForm
+						initialValues={selectedTransaction}
+						formId={formId}
+						onSubmit={handleSubmit}
+					/>
 				</FormModal>
 			)}
 
@@ -49,9 +87,10 @@ export function TransactionsTableActionsModal({
 						</>
 					}
 					closeModal={onClose}
+					deleteAction={handleDelete}
 					deleteMessage="Transação excluída com sucesso!"
 				/>
 			)}
 		</BaseModal>
-	)
+	);
 }

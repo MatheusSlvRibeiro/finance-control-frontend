@@ -29,7 +29,7 @@
 	border: 1px solid $income;
 
 	&:hover {
-		background-color: lighten($income, 60%);
+		background-color: color.adjust($income, $lightness: 60%);
 	}
 }
 
@@ -40,7 +40,7 @@
 	background-color: $expense;
 
 	&:hover {
-		background-color: darken($expense, 10%);
+		background-color: color.adjust($expense, $lightness: -10%);
 	}
 }
 
@@ -51,6 +51,6 @@
 	background-color: $income;
 
 	&:hover {
-		background-color: darken($income, 5%);
+		background-color: color.adjust($income, $lightness: -5%);
 	}
 }

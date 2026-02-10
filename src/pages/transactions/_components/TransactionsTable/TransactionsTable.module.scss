@@ -7,3 +7,18 @@
 	padding: $space-md;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
+
+.transactionsTable__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: $space-sm;
+	padding: $space-lg 0;
+	text-align: center;
+}
+
+.transactionsTable__emptyText {
+	font-weight: $font-medium;
+	color: $dark;
+}

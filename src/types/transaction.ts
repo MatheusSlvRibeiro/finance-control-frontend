@@ -1,7 +1,7 @@
 export type TransactionType = 'expense' | 'income'
 
 export interface Transaction {
-	id: string
+	uuid: string
 	description: string
 	category: string
 	categoryColor?: string

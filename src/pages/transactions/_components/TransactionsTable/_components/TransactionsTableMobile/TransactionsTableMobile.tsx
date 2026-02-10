@@ -1,56 +1,48 @@
-import { formatCurrency } from '@utils/formatCurrency/formatCurrency'
-import styles from './TransactionsTableMobile.module.scss'
-import { Dropdown } from '@components/ui/dropdown/Dropdown'
-import type { Transaction } from '@appTypes/transaction'
-import { formatDate } from '@utils/formatDate/formatDate'
-import { useCategoryLookup } from '@hooks/useCategoryLookup'
-import { useAccountLookup } from '@hooks/useAccountLookup'
+import { formatCurrency } from '@utils/formatCurrency/formatCurrency';
+import styles from './TransactionsTableMobile.module.scss';
+import { Dropdown } from '@components/ui/dropdown/Dropdown';
+import type { Transaction } from '@appTypes/transaction';
+import type { TransactionsTableRow } from '../../TransactionsTable';
 
 type Props = {
-	transactions: Transaction[]
-	onEdit: (t: Transaction) => void
-	onDelete: (t: Transaction) => void
-}
+	rows: TransactionsTableRow[];
+	onEdit: (t: Transaction) => void;
+	onDelete: (t: Transaction) => void;
+};
 
-export function TransactionsTableMobile({ transactions, onEdit, onDelete }: Props) {
-	const { getCategory } = useCategoryLookup()
-	const { getAccountName } = useAccountLookup()
-
+export function TransactionsTableMobile({ rows, onEdit, onDelete }: Props) {
 	return (
 		<table className={styles.transactionsTable}>
 			<tbody>
-				{transactions.map((item) => {
-					const category = getCategory(item.category)
-					const categoryLabel = category?.name ?? item.category
-					const categoryBg = item.categoryColor ?? category?.color
-					const accountLabel = getAccountName(item.account)
+				{rows.map((row) => {
+					const { item } = row;
 
 					return (
-						<tr className={styles.transactionsTable__bodyRow} key={item.id}>
+						<tr className={styles.transactionsTable__bodyRow} key={item.uuid}>
 							<td className={styles.transactionsTable__bodyRowMain}>
 								<div className={styles.transactionsTable__bodyRowAccount}>
-									{accountLabel}
+									{row.accountLabel ?? 'Sem conta'}
 								</div>
 								<div className={styles.transactionsTable__bodyRowDescription}>
-									{item.description}
+									{item.description ?? 'Sem descrição'}
 								</div>
 								<div
 									className={styles.transactionsTable__bodyRowCategory}
-									style={{ backgroundColor: categoryBg }}
+									style={{ backgroundColor: row.categoryBg }}
 								>
-									{category?.icon ? (
+									{row.categoryIcon ? (
 										<span
 											className={
 												styles.transactionsTable__bodyRowCategoryIcon
 											}
 										>
-											{category.icon}
+											{row.categoryIcon}
 										</span>
 									) : null}
 									<span
 										className={styles.transactionsTable__bodyRowCategoryLabel}
 									>
-										{categoryLabel}
+										{row.categoryLabel ?? 'Sem categoria'}
 									</span>
 								</div>
 							</td>
@@ -58,10 +50,12 @@ export function TransactionsTableMobile({ transactions, onEdit, onDelete }: Prop
 							<td className={styles.transactionsTable__bodyRowMeta}>
 								<div>
 									<div className={styles.transactionsTable__bodyRowDate}>
-										{formatDate(item.date)}
+										{row.dateLabel}
 									</div>
 									<div className={styles.transactionsTable__bodyRowValue}>
-										{formatCurrency(item.value)}
+										{row.valueNumber
+											? formatCurrency(row.valueNumber)
+											: 'Sem valor'}
 									</div>
 								</div>
 
@@ -83,9 +77,9 @@ export function TransactionsTableMobile({ transactions, onEdit, onDelete }: Prop
 								</Dropdown>
 							</td>
 						</tr>
-					)
+					);
 				})}
 			</tbody>
 		</table>
-	)
+	);
 }

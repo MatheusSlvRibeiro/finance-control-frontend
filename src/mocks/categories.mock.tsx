@@ -8,19 +8,19 @@ import {
 	TrendingUp,
 	Utensils,
 	Wrench,
-} from 'lucide-react'
-import type { Category } from '@appTypes/category'
+} from 'lucide-react';
+import type { Category } from '@appTypes/category';
 
 export const categories: Category[] = [
 	{
-		id: 'trabalho',
+		id: 'work',
 		name: 'Trabalho',
 		type: 'income',
 		color: '#4CAF50',
 		icon: <Briefcase size={18} />,
 	},
 	{
-		id: 'investimentos',
+		id: 'investments',
 		name: 'Investimentos',
 		type: 'income',
 		color: '#2E7D32',
@@ -34,45 +34,45 @@ export const categories: Category[] = [
 		icon: <Laptop size={18} />,
 	},
 	{
-		id: 'moradia',
+		id: 'home',
 		name: 'Moradia',
 		type: 'expense',
 		color: '#1976D2',
 		icon: <Home size={18} />,
 	},
 	{
-		id: 'alimentacao',
+		id: 'food',
 		name: 'Alimentação',
 		type: 'expense',
 		color: '#F57C00',
 		icon: <Utensils size={18} />,
 	},
 	{
-		id: 'transporte',
+		id: 'transport',
 		name: 'Transporte',
 		type: 'expense',
 		color: '#5D4037',
 		icon: <Bus size={18} />,
 	},
 	{
-		id: 'servicos',
+		id: 'services',
 		name: 'Serviços',
 		type: 'expense',
 		color: '#616161',
 		icon: <Wrench size={18} />,
 	},
 	{
-		id: 'saude',
+		id: 'healthy',
 		name: 'Saúde',
 		type: 'expense',
 		color: '#C62828',
 		icon: <HeartPulse size={18} />,
 	},
 	{
-		id: 'lazer',
+		id: 'leisure',
 		name: 'Lazer',
 		type: 'expense',
 		color: '#6A1B9A',
 		icon: <PartyPopper size={18} />,
 	},
-] satisfies Category[]
+] satisfies Category[];

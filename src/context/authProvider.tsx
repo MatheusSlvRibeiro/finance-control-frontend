@@ -1,36 +1,48 @@
-import { useEffect, useState } from 'react'
-import { AuthContext, AuthContextType } from './authContext'
-import * as authService from '@services/auth/authService'
+import { useEffect, useState } from 'react';
+import { AuthContext, AuthContextType } from './authContext';
+import * as authService from '@services/auth/authService';
+import { useNavigate } from 'react-router-dom';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-	const getStoredToken = () => localStorage.getItem('token')
+	const getStoredToken = () => localStorage.getItem('token');
 
-	const [accessToken, setAccessToken] = useState<string | null>(getStoredToken())
-	const isAuthenticated = Boolean(accessToken)
+	const [accessToken, setAccessToken] = useState<string | null>(getStoredToken());
+	const isAuthenticated = Boolean(accessToken);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleStorage = () => {
-			setAccessToken(getStoredToken())
-		}
-		window.addEventListener('storage', handleStorage)
-		return () => window.removeEventListener('storage', handleStorage)
-	}, [])
-
+			setAccessToken(getStoredToken());
+		};
+		window.addEventListener('storage', handleStorage);
+		return () => window.removeEventListener('storage', handleStorage);
+	}, []);
 
 	const login: AuthContextType['login'] = async (email, password) => {
-		const result = await authService.login(email, password)
+		const result = await authService.login(email, password);
 
 		if (result.success) {
-			setAccessToken(result.accessToken ?? null)
+			setAccessToken(result.accessToken ?? null);
 		}
 
-		return result
-	}
+		return result;
+	};
 
 	const logout: AuthContextType['logout'] = async () => {
-		await authService.logout()
-		setAccessToken(null)
-	}
+		await authService.logout();
+		setAccessToken(null);
+	};
+
+	useEffect(() => {
+		const handleUnauthorized = () => {
+			logout();
+			navigate('/login');
+		};
+
+		window.addEventListener('unauthorized', handleUnauthorized);
+		return () => window.removeEventListener('unauthorized', handleUnauthorized);
+	}, [logout, navigate]);
 
 	return (
 		<AuthContext.Provider
@@ -43,5 +55,5 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		>
 			{children}
 		</AuthContext.Provider>
-	)
+	);
 }

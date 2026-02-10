@@ -1,5 +1,2 @@
-export const formatCurrency = (value: number) =>
-	Intl.NumberFormat('pt-BR', {
-		style: 'currency',
-		currency: 'BRL',
-	}).format(value)
+export const formatCurrency = (value: number | null | undefined) =>
+	`R$ ${(Number(value) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;

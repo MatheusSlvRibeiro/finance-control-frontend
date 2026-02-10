@@ -12,7 +12,7 @@ export function useAccounts() {
 		setError(null);
 
 		try {
-			const list = await accountService.getAll();
+			const list = await accountService.getUserAccountsWithTotals();
 			setData(Array.isArray(list) ? list : []);
 		} catch (e) {
 			setError(e instanceof Error ? e : new Error('Erro ao carregar contas'));
@@ -25,7 +25,7 @@ export function useAccounts() {
 		let alive = true;
 		setLoading(true);
 		accountService
-			.getUserAccounts()
+			.getUserAccountsWithTotals()
 			.then((accounts) => {
 				if (alive) setData(Array.isArray(accounts) ? accounts : []);
 			})

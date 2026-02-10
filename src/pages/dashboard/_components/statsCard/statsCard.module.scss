@@ -62,16 +62,32 @@
 
 @media (min-width: $breakpoint-sm) {
 	.contentAccount {
-		background: linear-gradient(to right, lighten($accounts, 10%), darken($accounts, 2%));
+		background: linear-gradient(
+			to right,
+			color.adjust($accounts, $lightness: 10%),
+			color.adjust($accounts, $lightness: -2%)
+		);
 	}
 	.contentIncomes {
-		background: linear-gradient(to right, lighten($income, 10%), darken($income, 5%));
+		background: linear-gradient(
+			to right,
+			color.adjust($income, $lightness: 10%),
+			color.adjust($income, $lightness: -5%)
+		);
 	}
 	.contentExpenses {
-		background: linear-gradient(to right, lighten($expense, 10%), darken($expense, 5%));
+		background: linear-gradient(
+			to right,
+			color.adjust($expense, $lightness: 10%),
+			color.adjust($expense, $lightness: -5%)
+		);
 	}
 	.contentTransfers {
-		background: linear-gradient(to right, lighten($transfers, 10%), darken($transfers, 5%));
+		background: linear-gradient(
+			to right,
+			color.adjust($transfers, $lightness: 10%),
+			color.adjust($transfers, $lightness: -5%)
+		);
 	}
 }
 

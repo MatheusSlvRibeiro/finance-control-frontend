@@ -1,21 +1,16 @@
-import { formatCurrency } from '@utils/formatCurrency/formatCurrency'
-import type { Transaction } from '@appTypes/transaction'
-import { Dropdown } from '@components/ui/dropdown/Dropdown'
-import styles from './TransactionsTableDesktop.module.scss'
-import { formatDate } from '@utils/formatDate/formatDate'
-import { useCategoryLookup } from '@hooks/useCategoryLookup'
-import { useAccountLookup } from '@hooks/useAccountLookup'
+import { formatCurrency } from '@utils/formatCurrency/formatCurrency';
+import type { Transaction } from '@appTypes/transaction';
+import { Dropdown } from '@components/ui/dropdown/Dropdown';
+import styles from './TransactionsTableDesktop.module.scss';
+import type { TransactionsTableRow } from '../../TransactionsTable';
 
 type Props = {
-	transactions: Transaction[]
-	onEdit: (t: Transaction) => void
-	onDelete: (t: Transaction) => void
-}
+	rows: TransactionsTableRow[];
+	onEdit: (t: Transaction) => void;
+	onDelete: (t: Transaction) => void;
+};
 
-export function TransactionsTableDesktop({ transactions, onEdit, onDelete }: Props) {
-	const { getCategory } = useCategoryLookup()
-	const { getAccountName } = useAccountLookup()
-
+export function TransactionsTableDesktop({ rows, onEdit, onDelete }: Props) {
 	return (
 		<table className={styles.transactionsTableDesktop__table}>
 			<thead className={styles.transactionsTableDesktop__head}>
@@ -38,48 +33,45 @@ export function TransactionsTableDesktop({ transactions, onEdit, onDelete }: Pro
 			</thead>
 
 			<tbody className={styles.transactionsTableDesktop__body}>
-				{transactions.map((item) => {
-					const category = getCategory(item.category)
-					const categoryLabel = category?.name ?? item.category
-					const categoryBg = item.categoryColor ?? category?.color
-					const accountLabel = getAccountName(item.account)
+				{rows.map((row) => {
+					const { item } = row;
 
 					return (
-						<tr key={item.id}>
+						<tr key={item.uuid}>
 							<td className={styles.transactionsTableDesktop__cell}>
-								{item.description}
+								{item.description ?? 'Sem descrição'}
 							</td>
 							<td className={styles.transactionsTableDesktop__cell}>
 								<div
 									className={styles.transactionsTableDesktop__categoryPill}
-									style={{ backgroundColor: categoryBg }}
+									style={{ backgroundColor: row.categoryBg }}
 								>
-									{category?.icon ? (
+									{row.categoryIcon ? (
 										<span
 											className={
 												styles.transactionsTableDesktop__categoryIcon
 											}
 										>
-											{category.icon}
+											{row.categoryIcon}
 										</span>
 									) : null}
 									<span
 										className={styles.transactionsTableDesktop__categoryLabel}
 									>
-										{categoryLabel}
+										{row.categoryLabel ?? 'Sem categoria'}
 									</span>
 								</div>
 							</td>
 							<td className={styles.transactionsTableDesktop__cell}>
-								{accountLabel}
+								{row.accountLabel ?? 'Sem conta'}
 							</td>
 							<td className={styles.transactionsTableDesktop__cell}>
-								{formatDate(item.date)}
+								{row.dateLabel}
 							</td>
 							<td
 								className={`${styles.transactionsTableDesktop__cell} ${styles.transactionsTableDesktop__cellEnd}`}
 							>
-								{formatCurrency(item.value)}
+								{row.valueNumber ? formatCurrency(row.valueNumber) : 'Sem valor'}
 							</td>
 							<td className={styles.transactionsTableDesktop__cellActions}>
 								<Dropdown>
@@ -100,9 +92,9 @@ export function TransactionsTableDesktop({ transactions, onEdit, onDelete }: Pro
 								</Dropdown>
 							</td>
 						</tr>
-					)
+					);
 				})}
 			</tbody>
 		</table>
-	)
+	);
 }
